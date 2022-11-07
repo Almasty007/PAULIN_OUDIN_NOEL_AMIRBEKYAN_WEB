@@ -4,6 +4,7 @@ namespace iutnc\sae\action;
 
 use iutnc\sae\auth\Auth;
 use iutnc\sae\exception\EmailAlreadyRegistedException;
+use iutnc\sae\exception\NotStrengthPassWord;
 use iutnc\sae\exception\TooShortPasswordException;
 
 class AddUserAction extends Action {
@@ -38,6 +39,9 @@ class AddUserAction extends Action {
                     $html .= "<br><a href='?action=add-user'>Retour</a>";
                 } catch (TooShortPasswordException $e) {
                     $html = "password too short";
+                    $html .= "<br><a href='?action=add-user'>Retour</a>";
+                } catch (NotStrengthPassWord $e) {
+                    $html = "mot de passe n'est pas assez protege";
                     $html .= "<br><a href='?action=add-user'>Retour</a>";
                 }
             }
