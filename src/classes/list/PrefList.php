@@ -6,21 +6,24 @@ use iutnc\sae\media\Episode;
 
 class PrefList
 {
-    protected [] $seriePref;
-    public function __construct()
-    {
-        $episodePref = [];
-    }
 
-    function ajoutPref(Serie $s){
+    protected [] $seriePref;
+
+    public function __construct(){}
+
+    function ajoutPref(Serie $s): void{
         $this->seriePref[] = $s;
     }
 
-    function  supprimerPref(Serie $s){
+    function  supprimerPref(Serie $s): void{
         foreach ($this->seriePref as $index => $item) {
             if($s->equals($item)){
                 unset($this->seriePref[$index]);
             }
         }
+    }
+
+    function isIn(Serie $s):boolean{
+        return array_key_exists($s, $this->seriePref);
     }
 }
