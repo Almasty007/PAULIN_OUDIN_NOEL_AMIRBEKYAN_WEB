@@ -22,4 +22,8 @@ class PrefList
             }
         }
     }
+
+    function isIn(Serie $s):boolean{
+        return array_key_exists($s, $this->seriePref);
+    }
 }
