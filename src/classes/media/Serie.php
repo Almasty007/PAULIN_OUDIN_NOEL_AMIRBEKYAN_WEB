@@ -23,6 +23,15 @@ class Serie
         $episode->setNumero($this->nbrEpisode);
     }
 
+    public function equals(Serie $serie): bool
+    {
+        $res = false;
+        if($serie->titre === $this->titre & $serie->image === $this->image){
+            $res = true;
+        }
+        return $res;
+    }
+
     /**
      * @return array
      */
