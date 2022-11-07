@@ -1,0 +1,28 @@
+@startuml
+
+class Episode {
+    -numero : int
+    -titre : string
+    -resume : string
+    -duree : int
+}
+
+Episode --> "1" Image : image
+
+class Serie {
+    -titre : string
+    -genre : string
+    -public_vise : string
+    -descriptif : string
+    -annee : int
+    -date_ajout : string
+    -nb_episodes : int
+}
+Serie --> "1" Image : image
+
+class Image {
+}
+
+
+
+@enduml
