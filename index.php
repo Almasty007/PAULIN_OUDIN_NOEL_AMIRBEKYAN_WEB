@@ -2,13 +2,8 @@
 
 require_once "vendor/autoload.php";
 
-use iutnc\deefy\db\ConnectionFactory;
-use iutnc\deefy\dispatch\Dispatcher;
-use iutnc\deefy\action\SigninAction;
-use iutnc\deefy\action\AddUserAction;
-use iutnc\deefy\action\AddPlaylistAction;
-use iutnc\deefy\action\AddPodcastTrackAction;
-use iutnc\deefy\action\DisplayPlaylistAction;
+use iutnc\sae\db\ConnectionFactory;
+use iutnc\sae\dispatch\Dispatcher;
 
 ConnectionFactory::setConfig("DBConfig.ini");
 if (isset($_GET['action'])){
