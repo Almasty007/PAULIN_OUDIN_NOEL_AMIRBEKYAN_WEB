@@ -17,10 +17,10 @@ class Auth {
         if (! filter_var($email, FILTER_VALIDATE_EMAIL)) return false;
         $hash = password_hash($password, PASSWORD_DEFAULT, ['cost'=>12]);
         $bd = ConnectionFactory::makeConnection();
-        $query = $bd->prepare("select * from User where email = ?"); $query->bindParam(1, $email); $query->execute();
+        $query = $bd->prepare("select * from User where login = ?"); $query->bindParam(1, $email); $query->execute();
         if($query->rowCount() > 0) throw new EmailAlreadyRegistedException("Email has already registed");
         if(strlen($password) < 10) throw new TooShortPasswordException("Your password is too short, it needs 10 characters min");
-        $query = $bd->prepare("insert into User (email, passwd) values(?, ?)");
+        $query = $bd->prepare("insert into User (login, mdp) values(?, ?)");
         $query->bindParam(1, $email);
         $query->bindParam(2, $hash);
         $query->execute();
