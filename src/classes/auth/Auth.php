@@ -40,9 +40,9 @@ class Auth {
             $idUser = $bd->prepare("select idUser from User where login = ?");
             $idUser->bindParam(1, $email);
             $idUser ->execute();
-            $idUserVal = $idCompte->fetch()[0];
+            $idUserVal = $idUser->fetch()[0];
 
-            $query = $bd->prepare("insert into Account (idCompte, idUser) values(?, ?)");
+            $query = $bd->prepare("insert into account (idCompte, idUser) values(?, ?)");
 
             $query->bindParam(1, $idCompteVal);
             $query->bindParam(2, $idUserVal);
