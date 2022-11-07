@@ -7,16 +7,21 @@ use iutnc\sae\dispatch\Dispatcher;
 use iutnc\sae\action\SigninAction;
 use iutnc\sae\action\AddUserAction;
 
-
+session_start();
 ConnectionFactory::setConfig("DBConfig.ini");
-if (isset($_GET['action'])){
-    $dispatcher = new Dispatcher();
-    $dispatcher->run();
+if (isset($_SESSION['user'])){
+    echo "<p>HTML</p>";
 }
 else {
-    $action = <<<HTML
-        <a href="?action=add-user">inscription</a><br>
-        <a href="?action=signin">connection</a><br>
-    HTML;
-    echo $action;
+    if (isset($_GET['action'])){
+        $dispatcher = new Dispatcher();
+        $dispatcher->run();
+    }
+    else {
+        $action = <<<HTML
+            <a href="?action=add-user">inscription</a><br>
+            <a href="?action=signin">connection</a><br>
+        HTML;
+        echo $action;
+    }
 }
