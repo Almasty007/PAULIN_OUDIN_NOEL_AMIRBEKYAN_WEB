@@ -2,6 +2,8 @@
 
 namespace iutnc\sae\list;
 
+use iutnc\sae\media\Episode;
+
 class PrefList
 {
     protected [] $episodePref;
