@@ -63,14 +63,14 @@ class Auth {
 
     public static function authenticate(string $email, string $passwd2check): bool {
         $bd = ConnectionFactory::makeConnection();
-        $query = $bd->prepare("select * from User where email = ? ");
+        $query = $bd->prepare("select * from User where login = ? ");
         $query->bindParam(1, $email);
         $query->execute();
         $data = $query->fetch(PDO::FETCH_ASSOC);
-        $hash = $data['passwd'];
+        $hash = $data['mdp'];
         if (!password_verify($passwd2check, $hash)) {echo "mdp faux"; return false;}
         session_start();
-        $_SESSION['user'] = serialize(new User($email, $passwd2check, $data['role']));
+        $_SESSION['user'] = serialize(new User($email, $passwd2check));
         return true;
     }
 }
