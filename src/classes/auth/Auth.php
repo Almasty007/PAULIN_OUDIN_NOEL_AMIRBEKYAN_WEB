@@ -20,10 +20,15 @@ class Auth {
         $hash = password_hash($password, PASSWORD_DEFAULT, ['cost'=>12]);
         $bd = ConnectionFactory::makeConnection();
         $query = $bd->prepare("select * from User where login = ?"); $query->bindParam(1, $email); $query->execute();
+
         if (self::checkPassStrength($password, 10)) {
             $query = $bd->prepare("insert into User (login, mdp) values(?, ?)");
             $query->bindParam(1, $email);
             $query->bindParam(2, $hash);
+            $query->execute();
+            $query = $bd->prepare("insert into Compte (nomCompte) values(?)");
+            $nomCompte = explode('@', $email)[0];
+            $query->bindParam(1, $nomCompte);
             $query->execute();
             return true;
         }else{
