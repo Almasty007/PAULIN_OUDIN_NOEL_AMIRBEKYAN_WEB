@@ -7,7 +7,7 @@ use iutnc\sae\media\Episode;
 class PrefList
 {
 
-    protected [] $seriePref;
+    protected $seriePref = array();
 
     public function __construct(){}
 

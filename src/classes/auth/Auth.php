@@ -30,6 +30,23 @@ class Auth {
             $nomCompte = explode('@', $email)[0];
             $query->bindParam(1, $nomCompte);
             $query->execute();
+            $nomCompte = explode('@', $email)[0];
+
+            $idCompte = $bd->prepare("select idCompte from Compte where nomCompte = ?");
+            $idCompte->bindParam(1, $nomCompte);
+            $idCompte ->execute();
+            $idCompteVal = $idCompte->fetch()[0];
+
+            $idUser = $bd->prepare("select idUser from User where login = ?");
+            $idUser->bindParam(1, $email);
+            $idUser ->execute();
+            $idUserVal = $idUser->fetch()[0];
+
+            $query = $bd->prepare("insert into account (idCompte, idUser) values(?, ?)");
+
+            $query->bindParam(1, $idCompteVal);
+            $query->bindParam(2, $idUserVal);
+            $query->execute();
             return true;
         }else{
             return false;
