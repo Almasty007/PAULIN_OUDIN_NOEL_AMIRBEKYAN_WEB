@@ -20,7 +20,7 @@ class Auth {
         $hash = password_hash($password, PASSWORD_DEFAULT, ['cost'=>12]);
         $bd = ConnectionFactory::makeConnection();
         $query = $bd->prepare("select * from User where login = ?"); $query->bindParam(1, $email); $query->execute();
-
+        if($query->rowCount() > 0) throw new EmailAlreadyRegistedException("Email has already registed");
         if (self::checkPassStrength($password, 10)) {
             $query = $bd->prepare("insert into User (login, mdp) values(?, ?)");
             $query->bindParam(1, $email);
