@@ -11,10 +11,14 @@ class PrefList
     }
 
     function ajoutPref(Episode $e){
-        unset($this->episodePref[$e]);
+        $this->episodePref[] = $e;
     }
 
     function  supprimerPref(Episode $e){
-
+        foreach ($this->episodePref as $index => $item) {
+            if($e->equals($item)){
+                unset($this->episodePref[$index]);
+            }
+        }
     }
 }
