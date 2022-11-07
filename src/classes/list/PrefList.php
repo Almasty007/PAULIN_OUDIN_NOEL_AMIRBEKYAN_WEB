@@ -6,20 +6,20 @@ use iutnc\sae\media\Episode;
 
 class PrefList
 {
-    protected [] $episodePref;
+    protected [] $seriePref;
     public function __construct()
     {
         $episodePref = [];
     }
 
-    function ajoutPref(Episode $e){
-        $this->episodePref[] = $e;
+    function ajoutPref(Serie $s){
+        $this->seriePref[] = $s;
     }
 
-    function  supprimerPref(Episode $e){
-        foreach ($this->episodePref as $index => $item) {
-            if($e->equals($item)){
-                unset($this->episodePref[$index]);
+    function  supprimerPref(Serie $s){
+        foreach ($this->seriePref as $index => $item) {
+            if($s->equals($item)){
+                unset($this->seriePref[$index]);
             }
         }
     }
