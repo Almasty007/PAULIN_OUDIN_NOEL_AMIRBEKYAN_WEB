@@ -4,6 +4,9 @@ require_once "vendor/autoload.php";
 
 use iutnc\sae\db\ConnectionFactory;
 use iutnc\sae\dispatch\Dispatcher;
+use iutnc\sae\action\SigninAction;
+use iutnc\sae\action\AddUserAction;
+
 
 ConnectionFactory::setConfig("DBConfig.ini");
 if (isset($_GET['action'])){
