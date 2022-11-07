@@ -19,6 +19,15 @@ class Episode
         $this->duree = $duree;
     }
 
+    public function equals(Episode $episode): bool
+    {
+        $res = false;
+        if($episode->duree === $this->duree & $episode->titre === $this->titre & $episode->image === $this->image & $episode->resume === $this->resume){
+            $res = true;
+        }
+        return $res;
+    }
+
     /**
      * @return Image
      */
