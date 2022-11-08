@@ -6,6 +6,7 @@ use iutnc\sae\action\Action;
 use iutnc\sae\action\AddUserAction;
 use iutnc\sae\action\LogoutAction;
 use iutnc\sae\action\SigninAction;
+use iutnc\sae\exception\NotStrengthPassWord;
 
 class Dispatcher {
 
@@ -44,7 +45,11 @@ class Dispatcher {
                 echo "mauvaise 'action'";
                 break;
         }
-        $this->renderPage($action->execute());
+        try {
+            $this->renderPage($action->execute());
+        }
+        catch (\Error $e) {
+            header("Location:index.php");
+        }
     }
-
 }
