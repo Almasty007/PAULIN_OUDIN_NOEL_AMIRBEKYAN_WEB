@@ -1,20 +1,18 @@
 <?php
 
 namespace iutnc\sae\media;
+
 use iutnc\sae\media\Image;
 
-class Episode
+class Episode extends Media
 {
-    private Image $image;
-    private string $titre;
     private string $resume;
     private string $duree;
     private int $numero;
 
     public function __construct(Image $image, string $titre, string $resume, string $duree)
     {
-        $this->image = $image;
-        $this->titre = $titre;
+        parent::__construct($image, $titre);
         $this->resume = $resume;
         $this->duree = $duree;
     }
@@ -22,7 +20,7 @@ class Episode
     public function equals(Episode $episode): bool
     {
         $res = false;
-        if($episode->duree === $this->duree & $episode->titre === $this->titre & $episode->image === $this->image & $episode->resume === $this->resume){
+        if ($episode->duree === $this->duree & $episode->titre === $this->titre & $episode->image === $this->image & $episode->resume === $this->resume) {
             $res = true;
         }
         return $res;

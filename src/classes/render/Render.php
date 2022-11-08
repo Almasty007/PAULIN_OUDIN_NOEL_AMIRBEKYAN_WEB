@@ -2,9 +2,11 @@
 
 namespace iutnc\sae\render;
 
+use iutnc\sae\media\Media;
+
 interface Render
 {
 
 
-    function render ():void;
+    function render (Media $media):void;
 }
