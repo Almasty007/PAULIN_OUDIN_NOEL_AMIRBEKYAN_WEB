@@ -41,6 +41,9 @@ class Dispatcher {
             case "logout":
                 $action = new LogoutAction();
                 break;
+            case "catalogue":
+                $action = new GoToCatalogue();
+                break;
             default:
                 echo "mauvaise 'action'";
                 break;
