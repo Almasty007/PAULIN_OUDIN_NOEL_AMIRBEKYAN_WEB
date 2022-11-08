@@ -9,5 +9,6 @@ class LogoutAction extends Action
     {
         unset($_SESSION['user']);
         header("Location:index.php");
+        return "";
     }
 }
