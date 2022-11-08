@@ -8,6 +8,7 @@ use iutnc\sae\action\Catalogue;
 use iutnc\sae\action\LogoutAction;
 use iutnc\sae\action\SigninAction;
 use iutnc\sae\exception\NotStrengthPassWord;
+use iutnc\sae\media\Serie;
 
 class Dispatcher {
 
@@ -61,6 +62,6 @@ class Dispatcher {
     }
 
     public function lancerEpisode(){
-        echo $_GET['id'];
+        echo Serie::affichier($_GET['id']);
     }
 }

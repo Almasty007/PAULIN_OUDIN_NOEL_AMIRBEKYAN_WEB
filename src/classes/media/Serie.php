@@ -1,66 +1,23 @@
 <?php
 
 namespace iutnc\sae\media;
+use iutnc\sae\action\Action;
+use iutnc\sae\db\ConnectionFactory;
 use iutnc\sae\media\Episode;
 
 class Serie
 {
-    private $episodes = array();
-    private Image $image;
-    private string $titre;
-    private int $nbrEpisode = 0;
 
-    public function __construct(Image $image, string $titre)
+    public static function affichier(string $id): string
     {
-        $this->image = $image;
-        $this->titre = $titre;
-    }
-
-
-    public function ajouterEpisode(Episode $episode){
-        $this->episodes[] = $episode;
-        $this->nbrEpisode++;
-        $episode->setNumero($this->nbrEpisode);
-    }
-
-    public function equals(Serie $serie): bool
-    {
-        $res = false;
-        if($serie->titre === $this->titre & $serie->image === $this->image){
-            $res = true;
+        $res = "<HTML> <body>";
+        $bd = ConnectionFactory::makeConnection();
+        $query = $bd->prepare("select * from serie where id = ?");
+        $query->bindParam(1, $id);
+        $query->execute();
+        while ($row = $query->fetch()){
+            $res .= $row[1].$row[2].$row[4].$row[5];
         }
-        return $res;
-    }
-
-    /**
-     * @return array
-     */
-    public function getEpisodes(): array
-    {
-        return $this->episodes;
-    }
-
-    /**
-     * @return Image
-     */
-    public function getImage(): Image
-    {
-        return $this->image;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTitre(): string
-    {
-        return $this->titre;
-    }
-
-    /**
-     * @return int
-     */
-    public function getNbrEpisode(): int
-    {
-        return $this->nbrEpisode;
+        return $res."</body></HTML>";
     }
 }
