@@ -21,7 +21,8 @@ class Dispatcher {
             <html>
                 <head>
                     <meta charset="utf-8">
-                    <title>Deefy</title>
+                    <title>NetVOD</title>
+                    <link rel="stylesheet" type="text/css" href="style.css">
                 </head>
                 <body>
                     $html

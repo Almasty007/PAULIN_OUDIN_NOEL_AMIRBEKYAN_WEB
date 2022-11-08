@@ -38,8 +38,8 @@ HTML;
             <div class="header">
                 <a id="title" href="">NetVOD</a>
                 <div class="header-bottom">
-                    <a id="signin" href="?action=signin">Sign in</a>
-                    <a id="signup" href="?action=add-user">Sign up</a>
+                    <a id="signin" href="?action=signin">Se connecter</a>
+                    <a id="signup" href="?action=add-user">S'inscrire</a>
                 </div>
             </div>
         </body>
