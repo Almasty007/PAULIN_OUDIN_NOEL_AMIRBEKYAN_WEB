@@ -4,7 +4,7 @@ namespace iutnc\sae\dispatch;
 
 use iutnc\sae\action\Action;
 use iutnc\sae\action\AddUserAction;
-use iutnc\sae\action\Catalogue;
+use iutnc\sae\action\CatalogueAction;
 use iutnc\sae\action\LogoutAction;
 use iutnc\sae\action\SigninAction;
 use iutnc\sae\exception\NotStrengthPassWord;
@@ -48,7 +48,7 @@ class Dispatcher {
                 $action = new LogoutAction();
                 break;
             case "catalogue":
-                $action = new Catalogue();
+                $action = new CatalogueAction();
                 break;
             case "regarder":
                 $this->lancerEpisode();

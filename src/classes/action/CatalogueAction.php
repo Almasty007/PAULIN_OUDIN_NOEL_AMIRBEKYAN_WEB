@@ -4,7 +4,7 @@ namespace iutnc\sae\action;
 
 use iutnc\sae\db\ConnectionFactory;
 
-class Catalogue extends Action {
+class CatalogueAction extends Action {
 
     public function execute(): string{
         $res = "<HTML> <body>";

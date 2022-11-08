@@ -9,39 +9,38 @@ use iutnc\sae\action\AddUserAction;
 
 session_start();
 ConnectionFactory::setConfig("DBConfig.ini");
+//Si l'utilisateur est connecté, on affiche la page qui propose d'afficher le catalogue
 if (isset($_SESSION['user'])) {
     if (isset($_GET['action'])) {
         $dispatcher = new Dispatcher();
         $dispatcher->run();
     } else {
         $action = <<<HTML
-            <html>
-        <head>
-            <meta charset="utf-8">
-            <title>NetVOD</title>
-            <link rel="stylesheet" type="text/css" href="style.css">
-        </head>
-        <body>
-            <div class="header">
-                <a id="title" href="">NetVOD</a>
-                <div class="header-bottom">
                     <a href="?action=logout">Logout</a>
-                    <a href="?action=catalogue">Catalogue</a>
-                </div>
-            </div>
-        </body>
-    </html>
-            
+                    <a href="?action=catalogue">CatalogueAction</a>
 HTML;
-        echo $action;
+        echo ajouterIndex($action);
     }
-
-} else {
+}
+//Sinon (s'il n'est pas connecté), on affiche la page qui propose de se connecter ou de créer un compte
+else {
     if (isset($_GET['action'])) {
-        $dispatcher = new Dispatcher();
-        $dispatcher->run();
+        if ($_GET['action'] === "signin" or $_GET['action'] === "add-user") {
+            $dispatcher = new Dispatcher();
+            $dispatcher->run();
+        }
     } else {
         $action = <<<HTML
+                    <a id="signin" href="?action=signin">Se connecter</a>
+                    <a id="signup" href="?action=add-user">S'inscrire</a>
+HTML;
+        echo ajouterIndex($action);
+    }
+}
+
+//L'affichage principale de l'index
+function ajouterIndex(string $html) : string {
+    $code = <<<HTML
     <html>
         <head>
             <meta charset="utf-8">
@@ -51,14 +50,12 @@ HTML;
         <body>
             <div class="header">
                 <a id="title" href="">NetVOD</a>
-                <div class="header-bottom">
-                    <a id="signin" href="?action=signin">Se connecter</a>
-                    <a id="signup" href="?action=add-user">S'inscrire</a>
+                <div class="main">
+                    $html
                 </div>
             </div>
         </body>
     </html>
-HTML;
-        echo $action;
-    }
+    HTML;
+    return $code;
 }
