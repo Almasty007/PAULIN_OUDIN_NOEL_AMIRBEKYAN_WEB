@@ -4,8 +4,10 @@ namespace iutnc\sae\dispatch;
 
 use iutnc\sae\action\Action;
 use iutnc\sae\action\AddUserAction;
+use iutnc\sae\action\Catalogue;
 use iutnc\sae\action\LogoutAction;
 use iutnc\sae\action\SigninAction;
+use iutnc\sae\exception\NotStrengthPassWord;
 
 class Dispatcher {
 
@@ -40,11 +42,25 @@ class Dispatcher {
             case "logout":
                 $action = new LogoutAction();
                 break;
+            case "catalogue":
+                $action = new Catalogue();
+                break;
+            case "regarder":
+                $this->lancerEpisode();
+                return;
             default:
                 echo "mauvaise 'action'";
                 break;
         }
-        $this->renderPage($action->execute());
+        try {
+            $this->renderPage($action->execute());
+        }
+        catch (\Error $e) {
+            header("Location:index.php");
+        }
     }
 
+    public function lancerEpisode(){
+        echo $_GET['id'];
+    }
 }

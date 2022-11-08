@@ -3,17 +3,14 @@
 namespace iutnc\sae\media;
 use iutnc\sae\media\Episode;
 
-class Serie
+class Serie extends Media
 {
     private $episodes = array();
-    private Image $image;
-    private string $titre;
     private int $nbrEpisode = 0;
 
     public function __construct(Image $image, string $titre)
     {
-        $this->image = $image;
-        $this->titre = $titre;
+        parent::__construct($image,$titre);
     }
 
 
