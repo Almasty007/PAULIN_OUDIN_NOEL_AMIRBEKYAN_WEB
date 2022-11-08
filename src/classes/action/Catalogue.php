@@ -11,7 +11,7 @@ class Catalogue extends Action {
         $bd = ConnectionFactory::makeConnection();
         $rep = $bd->query("select * from serie");
         while ($row = $rep->fetch()){
-             $res.="<a href=?action=regarder&id=".$row[0].">".$row[1]."</a></br>";
+             $res.="<a href=?action=serie&id=".$row[0].">".$row[1]."</a></br>";
         }
         return $res."</HTML>";
     }
