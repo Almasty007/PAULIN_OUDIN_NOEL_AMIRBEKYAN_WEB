@@ -25,6 +25,9 @@ class Dispatcher {
                     <link rel="stylesheet" type="text/css" href="style.css">
                 </head>
                 <body>
+                    <div class="header">
+                        <a id="title" href="index.php">NetVOD</a>
+                    </div>
                     $html
                 </body>
             </html>
