@@ -1,6 +1,6 @@
 <?php
 
-namespace classes\action;
+namespace iutnc\sae\action;
 
 use iutnc\sae\action\Action;
 
