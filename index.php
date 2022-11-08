@@ -17,7 +17,8 @@ if (isset($_SESSION['user'])) {
     } else {
         $action = <<<HTML
                     <a href="?action=logout">Logout</a>
-                    <a href="?action=catalogue">CatalogueAction</a>
+                    <a href="?action=catalogue">Catalogue</a>
+                    <a href="?action=listePrefere">Ep Preferes</a>
 HTML;
         echo ajouterIndex($action);
     }

@@ -6,6 +6,7 @@ use iutnc\sae\action\Action;
 use iutnc\sae\action\AddUserAction;
 use iutnc\sae\action\CatalogueAction;
 use iutnc\sae\action\LogoutAction;
+use iutnc\sae\action\SelectionSerieActoin;
 use iutnc\sae\action\SigninAction;
 use iutnc\sae\exception\NotStrengthPassWord;
 use iutnc\sae\media\Serie;
@@ -50,9 +51,12 @@ class Dispatcher {
             case "catalogue":
                 $action = new CatalogueAction();
                 break;
-            case "regarder":
-                $this->lancerEpisode();
-                return;
+            case "listePrefere":
+                $action = new ListePref();
+                break;
+            case "serie":
+                $action = new SelectionSerieActoin($_GET['id']);
+                break;
             default:
                 echo "mauvaise 'action'";
                 break;
@@ -63,9 +67,5 @@ class Dispatcher {
         catch (\Error $e) {
             header("Location:index.php");
         }
-    }
-
-    public function lancerEpisode(){
-        echo Serie::affichier($_GET['id']);
     }
 }
