@@ -4,7 +4,7 @@ namespace iutnc\sae\media;
 
 use iutnc\sae\media\Image;
 
-class Episode extends Media
+class Episode
 {
     private string $resume;
     private string $duree;
