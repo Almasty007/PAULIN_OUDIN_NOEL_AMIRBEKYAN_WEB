@@ -16,7 +16,7 @@ class Serie
         $query->bindParam(1, $id);
         $query->execute();
         while ($row = $query->fetch()){
-            $res .= $row[1].$row[2].$row[4].$row[5];
+            $res .= "titre : ".$row[1]." description : ".$row[2]."</br> annee : ".$row[4]." date d'ajout : ".$row[5];
         }
         return $res."</body></HTML>";
     }
