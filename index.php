@@ -27,6 +27,7 @@ if (isset($_SESSION['user'])) {
                 <div class="header-bottom">
                     <a href="?action=logout">Logout</a>
                     <a href="?action=catalogue">Catalogue</a>
+                    <a href="?action=listePrefere">Ep Preferes</a>
                 </div>
             </div>
         </body>

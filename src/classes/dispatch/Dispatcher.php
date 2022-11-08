@@ -5,6 +5,7 @@ namespace iutnc\sae\dispatch;
 use iutnc\sae\action\Action;
 use iutnc\sae\action\AddUserAction;
 use iutnc\sae\action\Catalogue;
+use iutnc\sae\action\ListePref;
 use iutnc\sae\action\LogoutAction;
 use iutnc\sae\action\SelectionSerieActoin;
 use iutnc\sae\action\SigninAction;
@@ -50,6 +51,9 @@ class Dispatcher {
                 break;
             case "catalogue":
                 $action = new Catalogue();
+                break;
+            case "listePrefere":
+                $action = new ListePref();
                 break;
             case "serie":
                 $action = new SelectionSerieActoin($_GET['id']);
