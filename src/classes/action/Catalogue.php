@@ -10,9 +10,10 @@ class Catalogue extends Action {
         $res = "<HTML> <body>";
         $bd = ConnectionFactory::makeConnection();
         $rep = $bd->query("select * from serie");
+        $res.= "<div class=\"series\">";
         while ($row = $rep->fetch()){
-             $res.="<a href=?action=serie&id=".$row[0].">".$row[1]."</a></br>";
+             $res.="<a href=?action=regarder&id=".$row[0].">".$row[1]."</a></br>";
         }
-        return $res."</HTML>";
+        return $res."</div></body></HTML>";
     }
 }

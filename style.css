@@ -19,7 +19,7 @@ body
     color: white;
     font-family: 'Raleway', sans-serif;
     font-size: 50px;
-    margin: 2%;
+    margin: 1%;
 }
 
 a
@@ -81,4 +81,16 @@ input[type=submit] {
 
 input[type=submit]:hover {
     background-color: #45a049;
+}
+
+.series
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.serie
+{
+    padding: 5%;
+    background-color: red;
 }

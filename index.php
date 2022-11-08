@@ -15,9 +15,23 @@ if (isset($_SESSION['user'])) {
         $dispatcher->run();
     } else {
         $action = <<<HTML
-            <p>HTML</p>
-            <a href="?action=logout">Logout</a>
-            <a href="?action=catalogue">Catalogue</a>
+            <html>
+        <head>
+            <meta charset="utf-8">
+            <title>NetVOD</title>
+            <link rel="stylesheet" type="text/css" href="style.css">
+        </head>
+        <body>
+            <div class="header">
+                <a id="title" href="">NetVOD</a>
+                <div class="header-bottom">
+                    <a href="?action=logout">Logout</a>
+                    <a href="?action=catalogue">Catalogue</a>
+                </div>
+            </div>
+        </body>
+    </html>
+            
 HTML;
         echo $action;
     }
