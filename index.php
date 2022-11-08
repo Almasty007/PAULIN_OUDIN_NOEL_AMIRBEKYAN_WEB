@@ -10,11 +10,17 @@ use iutnc\sae\action\AddUserAction;
 session_start();
 ConnectionFactory::setConfig("DBConfig.ini");
 if (isset($_SESSION['user'])){
-    $action = <<<HTML
+    if (isset($_GET['action'])){
+        $dispatcher = new Dispatcher();
+        $dispatcher->run();
+    }
+    else {
+        $action = <<<HTML
             <p>HTML</p>
-            <button href="?action=logout">Logout</button>
+            <a href="?action=logout">Logout</a>
 HTML;
-    echo $action;
+        echo $action;
+    }
 
 }
 else {

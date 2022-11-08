@@ -4,6 +4,7 @@ namespace iutnc\sae\dispatch;
 
 use iutnc\sae\action\Action;
 use iutnc\sae\action\AddUserAction;
+use iutnc\sae\action\LogoutAction;
 use iutnc\sae\action\SigninAction;
 
 class Dispatcher {
@@ -35,6 +36,9 @@ class Dispatcher {
                 break;
             case "add-user":
                 $action = new AddUserAction();
+                break;
+            case "logout":
+                $action = new LogoutAction();
                 break;
             default:
                 echo "mauvaise 'action'";
