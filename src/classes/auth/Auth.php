@@ -97,7 +97,6 @@ class Auth {
         $data = $query->fetch(PDO::FETCH_ASSOC);
         $hash = $data['mdp'];
         if (!password_verify($passwd2check, $hash)) {echo "mdp faux"; return false;}
-        session_start();
         $_SESSION['user'] = serialize(new User($email, $passwd2check));
         return true;
     }

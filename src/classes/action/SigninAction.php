@@ -22,7 +22,7 @@ class SigninAction extends Action {
             $passwd = filter_var($_POST['password']);
             if (Auth::authenticate($email, $passwd)) {
                 $html = "You are connected";
-                $html.= "<a href='index.php'>ACCUEIL</a>";
+                header("Location:index.php");
                 if (isset($_SESSION['user'])){
                     $html.= "<p>CONNECTE</p>";
                 }
