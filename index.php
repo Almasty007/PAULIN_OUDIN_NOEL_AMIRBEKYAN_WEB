@@ -18,6 +18,7 @@ if (isset($_SESSION['user'])){
         $action = <<<HTML
             <p>HTML</p>
             <a href="?action=logout">Logout</a>
+            <a href="?action=catalogue">Catalogue</a>
 HTML;
         echo $action;
     }
