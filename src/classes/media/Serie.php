@@ -13,21 +13,25 @@ class Serie
         $res = "";
         $bd = ConnectionFactory::makeConnection();
 
+        try{
+            $req01 = $bd->query("select count(*) from serie where id = $id");
+            $r01 = $req01->fetch();
+            $bool0 = $r01[0];
+            if ($bool0 == 0) {
+                throw new PDOException;
+            }
+            $id_util = $_SESSION['id'];
+            $req0 = $bd->query("select count(*) from listPref where idSerie = $id and idUtilisateur = $id_util");
+            $r1 = $req0->fetch();
+            $bool = $r1[0];
+            if($bool == 1){
+                $res.= '<a href=?action=supprimerpref&id_serie='.$id.'> Supprimer de mes préférences</a><br>';
+            } else {
+                $res.= '<a href=?action=ajouterpref&id_serie='.$id.'> Ajouter à mes préférences</a><br>';
+            }
 
-        $req01 = $bd->query("select count(*) from serie where id = $id");
-        $r01 = $req01->fetch();
-        $bool0 = $r01[0];
-        if ($bool0 == 0) {
-            throw new PDOException;
-        }
-        $id_util = $_SESSION['id'];
-        $req0 = $bd->query("select count(*) from listPref where idSerie = $id and idUtilisateur = $id_util");
-        $r1 = $req0->fetch();
-        $bool = $r1[0];
-        if($bool == 1){
-            $res.= '<a href=?action=supprimerpref&id_serie='.$id.'> Supprimer de mes préférences</a><br>';
-        } else {
-            $res.= '<a href=?action=ajouterpref&id_serie='.$id.'> Ajouter à mes préférences</a><br>';
+        } catch (\PDOException $e){
+            //exception : si on interagie avec une serie non conforme attrape
         }
 
 
