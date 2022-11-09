@@ -15,7 +15,7 @@ if (isset($_SESSION['user'])) {
         $dispatcher->run();
     } else {
         $action = <<<HTML
-                    <a href="?action=logout">Logout</a>
+                    <a href="?action=logout">Se déconnecter</a>
                     <a href="?action=catalogue">Catalogue</a>
 HTML;
         $list = new ListeAction("listPref");

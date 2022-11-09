@@ -8,7 +8,7 @@ use iutnc\sae\db\ConnectionFactory;
 class Episode
 {
 
-    public static function affichier(string $id_serie,string $id_episode): string
+    public static function afficher(string $id_serie, string $id_episode): string
     {
         $res = "";
         $bd = ConnectionFactory::makeConnection();

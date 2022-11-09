@@ -16,6 +16,6 @@ class SelectionEpisodeAction extends Action{
     }
 
     public function execute(): string{
-        return Episode::affichier($this->id_serie,$this->id_episode);
+        return Episode::afficher($this->id_serie,$this->id_episode);
     }
 }
