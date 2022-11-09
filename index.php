@@ -20,7 +20,7 @@ if (isset($_SESSION['user'])) {
                     <a href="?action=logout">Logout</a>
                     <a href="?action=catalogue">Catalogue</a>
 HTML;
-        $action.= $listPref->execute();
+        $action.= "</br>".$listPref->execute();
         echo ajouterIndex($action);
     }
 }
