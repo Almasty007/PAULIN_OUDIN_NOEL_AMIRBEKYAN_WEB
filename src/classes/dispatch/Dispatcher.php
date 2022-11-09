@@ -10,6 +10,7 @@ use iutnc\sae\action\LogoutAction;
 use iutnc\sae\action\SelectionEpisodeAction;
 use iutnc\sae\action\SelectionSerieAction;
 use iutnc\sae\action\SigninAction;
+use iutnc\sae\action\SupprimerPref;
 use iutnc\sae\addUrl\AjouterPref;
 
 class Dispatcher {
@@ -57,6 +58,9 @@ class Dispatcher {
             case "ajouterpref":
                 \iutnc\sae\baseChange\AjouterPref::execute();
                 $action = new SelectionSerieAction($_GET['id_serie']);
+                break;
+            case "supprimerpref":
+                $action = new SupprimerPref();
                 break;
             case "regarder":
                 $action = new SelectionEpisodeAction($_GET['id'],$_GET['id_ep']);
