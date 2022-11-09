@@ -60,7 +60,7 @@ class Dispatcher {
         try {
             $this->renderPage($action->execute());
         }
-        catch (\Error $e) {
+        catch (\Erro $e) {
             header("Location:index.php");
         }
     }

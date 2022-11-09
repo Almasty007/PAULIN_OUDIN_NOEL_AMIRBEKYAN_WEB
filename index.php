@@ -46,7 +46,7 @@ HTML;
 //L'affichage principale de l'index
 function ajouterIndex(string $html) : string {
     $code = <<<HTML
-    <html>
+    <html lang="">
         <head>
             <meta charset="utf-8">
             <title>NetVOD</title>
