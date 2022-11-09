@@ -10,7 +10,7 @@ use iutnc\sae\action\LogoutAction;
 use iutnc\sae\action\SelectionEpisodeAction;
 use iutnc\sae\action\SelectionSerieAction;
 use iutnc\sae\action\SigninAction;
-use iutnc\sae\action\AjouterPref;
+use iutnc\sae\addUrl\AjouterPref;
 
 class Dispatcher {
 
