@@ -121,5 +121,14 @@ td
 
 .description
 {
-    background-color: red;
+    background-color: #ff8903;
+    margin: 2% 5% 2% 2%;
+    border-radius: 10px;
+    padding: 1%;
+}
+
+.description>p
+{
+    color: black;
+    font-weight: bold;
 }
