@@ -8,10 +8,11 @@ use iutnc\sae\media\Episode;
 class Serie
 {
 
-    public static function affichier(string $id): string
+    public static function afficher(string $id): string
     {
         $res = "";
         $bd = ConnectionFactory::makeConnection();
+        $res.= '<a href=?action=ajouterpref&id_serie='.$id.'> Ajouter à mes préférences</a><br>';
         $query = $bd->prepare("select * from serie where id = ?");
         $query->bindParam(1, $id);
         $query->execute();
@@ -32,8 +33,7 @@ class Serie
         while ($row = $query->fetch()){
             $res .= "<tr><td class=\"td-lien\"><a href=?action=regarder&id_ep=".$row[0].">".$row[2]."</a></td><td><p>Episode ".$row[1]."</p></td></tr>";
         }
-        $res.="</tbody></table></div>";
-        $res.="<a href='?action=catalogue'>Retour</a>";
+        $res.="</div>";
         return $res;
     }
 }

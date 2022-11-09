@@ -14,6 +14,6 @@ class SelectionSerieAction extends Action{
     }
 
     public function execute(): string{
-        return Serie::affichier($this->id);
+        return Serie::afficher($this->id);
     }
 }
