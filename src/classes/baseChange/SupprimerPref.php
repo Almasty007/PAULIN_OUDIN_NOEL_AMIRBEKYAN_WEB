@@ -1,7 +1,8 @@
 <?php
 
-namespace iutnc\sae\action;
+namespace iutnc\sae\baseChange;
 
+use iutnc\sae\action\PDOException;
 use iutnc\sae\db\ConnectionFactory;
 
 class SupprimerPref
@@ -25,11 +26,11 @@ class SupprimerPref
          * regarde si l'utilisateur a deja ajoute la serie dans ses preferences,
          * si c'est le cas une notif nous l'averti
          */
-        $req0 = $bd->query("select count(*) from listPref where idSerie = $id_serie and idUtilisateur = $id");
+        $req0 = $bd->query("select count(*) from listPref where idserie = $id_serie and iduser = $id");
         $r1 = $req0->fetch();
         $bool = $r1[0];
         if ($bool == 1) {
-            $req = $bd->prepare("delete from listPref where idSerie = ? and idUtilisateur = ?");
+            $req = $bd->prepare("delete from listPref where idserie = ? and iduser = ?");
             $req->bindParam(1, $id_serie);
             $req->bindParam(2, $id);
             $req->execute();

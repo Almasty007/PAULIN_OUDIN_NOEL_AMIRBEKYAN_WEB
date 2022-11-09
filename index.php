@@ -2,10 +2,9 @@
 
 require_once "vendor/autoload.php";
 
+use iutnc\sae\action\ListeAction;
 use iutnc\sae\db\ConnectionFactory;
 use iutnc\sae\dispatch\Dispatcher;
-use iutnc\sae\action\SigninAction;
-use iutnc\sae\action\AddUserAction;
 
 session_start();
 ConnectionFactory::setConfig("DBConfig.ini");
@@ -15,12 +14,14 @@ if (isset($_SESSION['user'])) {
         $dispatcher = new Dispatcher();
         $dispatcher->run();
     } else {
-        $listPref = new \iutnc\sae\action\ListePrefAction();
         $action = <<<HTML
                     <a href="?action=logout">Se déconnecter</a>
                     <a href="?action=catalogue">Catalogue</a>
 HTML;
-        $action.= "</br><p>".$listPref->execute()."</p>";
+        $list = new ListeAction("listPref");
+        $action.= "</br><p>".$list->execute()."</p>";
+        $listEnCour = new ListeAction("EnCour");
+        $action.= "</br><p>".$listEnCour->execute()."</p>";
         echo ajouterIndex($action);
     }
 }

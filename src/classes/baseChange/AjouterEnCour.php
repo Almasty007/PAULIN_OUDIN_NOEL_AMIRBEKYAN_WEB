@@ -14,6 +14,7 @@ class AjouterEnCour
         $id_serie = $_GET["id"];
         $req01 = $bd->query("select count(*) from EnCour where idserie = $id_serie and iduser = $idUser");
         $r01 = $req01->fetch();
+        echo "ici";
         if ($r01[0] == 0) {
             $req = $bd->prepare("insert into EnCour values(?,?)");
             $req->bindParam(1, $id_serie);
