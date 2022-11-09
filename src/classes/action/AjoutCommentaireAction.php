@@ -18,9 +18,9 @@ class AjoutCommentaireAction
             $res = $bd->prepare("insert into avis(user_id,serie_id,note) values (?,?,?);");
             $res->bindParam(1,$_SESSION['id']);
             $res->bindParam(2,$idserie);
-            $res->bindParam(3,$_GET['note']);
+            $res->bindParam(3,$_POST['note']);
             $res->execute();
         }
-
+        header('');
     }
 }
