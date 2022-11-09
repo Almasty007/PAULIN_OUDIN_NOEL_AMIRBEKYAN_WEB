@@ -1,6 +1,6 @@
 <?php
 
-namespace iutnc\sae\addUrl;
+namespace iutnc\sae\action;
 
 use iutnc\sae\db\ConnectionFactory;
 
@@ -36,14 +36,14 @@ class AjouterPref
                 $req->bindParam(1, $id_serie);
                 $req->bindParam(2, $id);
                 $req->execute();
-                $res .= '<script> alert("Vous avez ajouté cette série dans vos préférences");</script>';
+                //$res .= '<script> alert("Vous avez ajouté cette série dans vos préférences");</script>';
             } else {
-                $res .= '<script> alert("Vous aviez déjà cette série dans vos préférences");</script>';
+                //$res .= '<script> alert("Vous aviez déjà cette série dans vos préférences");</script>';
             }
         } catch (PDOException $e) {
-            $res .= '<script> alert("Utilisez une série qui existe");</script>';
+            //$res .= '<script> alert("Utilisez une série qui existe");</script>';
         }
         header("Location:index.php");
-        return $res;
+        return "";
     }
 }
