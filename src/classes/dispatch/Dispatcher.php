@@ -4,14 +4,13 @@ namespace iutnc\sae\dispatch;
 
 use iutnc\sae\action\Action;
 use iutnc\sae\action\AddUserAction;
-use iutnc\sae\action\AjouterPrefAction;
 use iutnc\sae\action\CatalogueAction;
 use iutnc\sae\action\LogoutAction;
 use iutnc\sae\action\SelectionEpisodeAction;
 use iutnc\sae\action\SelectionSerieAction;
 use iutnc\sae\action\SigninAction;
 use iutnc\sae\action\SupprimerPref;
-use iutnc\sae\addUrl\AjouterPref;
+use iutnc\sae\baseChange\AjouterPref;
 
 class Dispatcher {
 
@@ -21,7 +20,7 @@ class Dispatcher {
     private function renderPage(string $html) : void {
         $res = <<<HTML
             <!DOCTYPE html>
-            <html>
+            <html lang="">
                 <head>
                     <meta charset="utf-8">
                     <title>NetVOD</title>
@@ -56,7 +55,7 @@ class Dispatcher {
                 $action = new SelectionSerieAction($_GET['id']);
                 break;
             case "ajouterpref":
-                \iutnc\sae\baseChange\AjouterPref::execute();
+                AjouterPref::execute();
                 $action = new SelectionSerieAction($_GET['id_serie']);
                 break;
             case "supprimerpref":
@@ -73,7 +72,7 @@ class Dispatcher {
         try {
                 $this->renderPage($action->execute());
         }
-        catch (\Erro $e) {
+        catch (\Error $e) {
             header("Location:index.php");
         }
     }
