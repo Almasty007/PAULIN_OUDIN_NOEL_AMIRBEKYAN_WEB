@@ -1,7 +1,8 @@
 <?php
 
-namespace iutnc\sae\action;
+namespace iutnc\sae\baseChange;
 
+use iutnc\sae\action\PDOException;
 use iutnc\sae\db\ConnectionFactory;
 
 class AjouterPref
