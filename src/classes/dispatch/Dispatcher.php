@@ -60,7 +60,8 @@ class Dispatcher {
                 $action = new SelectionSerieAction($_GET['id_serie']);
                 break;
             case "supprimerpref":
-                $action = new SupprimerPref();
+                SupprimerPref::execute();
+                $action = new SelectionSerieAction($_GET['id_serie']);
                 break;
             case "regarder":
                 $action = new SelectionEpisodeAction($_GET['id'],$_GET['id_ep']);

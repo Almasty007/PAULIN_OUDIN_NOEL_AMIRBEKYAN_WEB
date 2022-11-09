@@ -6,14 +6,11 @@ use iutnc\sae\db\ConnectionFactory;
 
 class SupprimerPref
 {
-    public function execute(): string
+    public static function execute()
     {
-        $res = "";
         $bd = ConnectionFactory::makeConnection();
         $id = $_SESSION['id'];
         $id_serie = $_GET["id_serie"];
-        //$res .= "ajout a la listPref $id_serie:$id";
-
         /*
          * verifie que la serie existe sinon il lance une erreur
          * utile si l'utilisateur modifie le lien a sa guise
@@ -36,12 +33,6 @@ class SupprimerPref
             $req->bindParam(1, $id_serie);
             $req->bindParam(2, $id);
             $req->execute();
-            //$res .= '<script> alert("Vous avez ajouté cette série dans vos préférences");</script>';
-        } else {
-            //$res .= '<script> alert("Vous aviez déjà cette série dans vos préférences");</script>';
         }
-
-        header("Location:index.php");
-        return "";
     }
 }
