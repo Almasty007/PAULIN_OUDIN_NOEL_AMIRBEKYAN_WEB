@@ -91,10 +91,9 @@ input[type=submit]:hover {
 
 .serie
 {
-    padding: 5%;
-    background-color: red;
     width: 100px;
     height: 50px;
+    display: block;
 }
 
 p
@@ -132,7 +131,18 @@ td
     color: black;
     font-weight: bold;
 }
+
 .video{
     display: flex;
     justify-content: center;
+}
+
+.video-div
+{
+    margin: 1%;
+}
+
+.img-video
+{
+    width: 200px;
 }

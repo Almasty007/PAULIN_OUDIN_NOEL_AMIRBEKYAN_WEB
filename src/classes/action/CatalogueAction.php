@@ -12,7 +12,7 @@ class CatalogueAction extends Action {
         $rep = $bd->query("select * from serie");
         $res.= "<div class=\"series\">";
         while ($row = $rep->fetch()){
-             $res.="<a class=\"serie\" href=?action=serie&id=".$row[0].">".$row[1]."</a></br>";
+             $res.="<div class='video-div'><a href=?action=serie&id=".$row[0]."><img class='img-video' src='image/$row[3]'></a><a class=\"serie\" href=?action=serie&id=".$row[0].">".$row[1]."</a></div>";
         }
         return $res."</div></HTML>";
     }
