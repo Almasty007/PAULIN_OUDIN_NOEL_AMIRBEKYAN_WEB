@@ -32,7 +32,8 @@ class Serie
         while ($row = $query->fetch()){
             $res .= "<tr><td class=\"td-lien\"><a href=?action=regarder&id_ep=".$row[0].">".$row[2]."</a></td><td><p>Episode ".$row[1]."</p></td></tr>";
         }
-        $res.="</div>";
+        $res.="</tbody></table></div>";
+        $res.="<a href='?action=catalogue'>Retour</a>";
         return $res;
     }
 }
