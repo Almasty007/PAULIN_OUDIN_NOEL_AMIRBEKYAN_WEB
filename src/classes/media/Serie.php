@@ -55,7 +55,16 @@ class Serie
         while ($row = $query->fetch()){
             $res .= "<tr><td class=\"td-lien\"><a href=?action=regarder&id_ep=".$row[0]."&id=".$id.">".$row[2]."</a></td><td><p>Episode ".$row[1]."</p></td></tr>";
         }
-        $res.="</tbody></table></div><a href='?action=catalogue'>Retour</a>";
+        $res.="</tbody></table>
+        <p>Note</p>
+        <form method='post' action='?action=ajout-comm&idserie'".$id.">
+        <select><option name='note' value='1'>1</option>
+        <option name='note' value='2'>2</option>
+        <option name='note' value='3'>3</option>
+        <option name='note' value='4'>4</option>
+        <option name='note' value='5'>5</option></select>
+        <button type='submit'>Valider Note</button></form></div>
+        <a href='?action=catalogue'>Retour</a>";
         $res.=self::calculerNote($id);
         $res.=self::getCommentaires($id);
         return $res;
