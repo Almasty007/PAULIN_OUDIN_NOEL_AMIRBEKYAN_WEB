@@ -17,7 +17,7 @@ if (isset($_SESSION['user'])) {
     } else {
         $listPref = new \iutnc\sae\action\ListePrefAction();
         $action = <<<HTML
-                    <a href="?action=logout">Logout</a>
+                    <a href="?action=logout">Se déconnecter</a>
                     <a href="?action=catalogue">Catalogue</a>
 HTML;
         $action.= "</br><p>".$listPref->execute()."</p>";
