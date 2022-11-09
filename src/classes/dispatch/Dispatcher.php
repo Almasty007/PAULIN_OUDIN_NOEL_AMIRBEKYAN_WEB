@@ -50,9 +50,6 @@ class Dispatcher {
             case "catalogue":
                 $action = new CatalogueAction();
                 break;
-            case "listePrefere":
-                $action = new ListePrefAction();
-                break;
             case "serie":
                 $action = new SelectionSerieAction($_GET['id']);
                 break;

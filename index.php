@@ -15,11 +15,12 @@ if (isset($_SESSION['user'])) {
         $dispatcher = new Dispatcher();
         $dispatcher->run();
     } else {
+        $listPref = new \iutnc\sae\action\ListePrefAction();
         $action = <<<HTML
                     <a href="?action=logout">Logout</a>
                     <a href="?action=catalogue">Catalogue</a>
-                    <a href="?action=listePrefere">Ep Preferes</a>
 HTML;
+        $action.= $listPref->execute();
         echo ajouterIndex($action);
     }
 }
