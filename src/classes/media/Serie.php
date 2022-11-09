@@ -31,7 +31,7 @@ class Serie
         $res.="<div class=\"episodes\">";
         $res.="<table><tbody>";
         while ($row = $query->fetch()){
-            $res .= "<tr><td class=\"td-lien\"><a href=?action=regarder&id_ep=".$row[0].">".$row[2]."</a></td><td><p>Episode ".$row[1]."</p></td></tr>";
+            $res .= "<tr><td class=\"td-lien\"><a href=?action=regarder&id_ep=".$row[0]."&id=".$id.">".$row[2]."</a></td><td><p>Episode ".$row[1]."</p></td></tr>";
         }
         $res.="</div>";
         return $res;
