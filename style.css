@@ -132,3 +132,7 @@ td
     color: black;
     font-weight: bold;
 }
+.video{
+    display: flex;
+    justify-content: center;
+}
