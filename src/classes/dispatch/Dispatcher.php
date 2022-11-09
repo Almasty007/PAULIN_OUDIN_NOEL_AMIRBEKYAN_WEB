@@ -55,7 +55,8 @@ class Dispatcher {
                 $action = new SelectionSerieAction($_GET['id']);
                 break;
             case "ajouterpref":
-                $action = new AjouterPref();
+                \iutnc\sae\baseChange\AjouterPref::execute();
+                $action = new SelectionSerieAction($_GET['id_serie']);
                 break;
             case "regarder":
                 $action = new SelectionEpisodeAction($_GET['id'],$_GET['id_ep']);
