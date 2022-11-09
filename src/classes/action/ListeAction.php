@@ -21,10 +21,10 @@ class ListeAction extends Action{
                 $res.= "Film prefere: </br>";
                 break;
             case "EnCour":
-                $res.= "En cour de visionnage: </br>";
+                $res.= "En cours de visionnage: </br>";
                 break;
             case "listSerieVisionner":
-                $res.= "Deja visionner: </br>";
+                $res.= "Déjà visionné: </br>";
                 break;
         }
         $rep0 = $bd->query("select count(*)from $this->table where iduser = $id");
