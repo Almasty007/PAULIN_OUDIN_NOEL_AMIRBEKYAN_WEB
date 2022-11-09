@@ -7,13 +7,13 @@ use iutnc\sae\db\ConnectionFactory;
 class CatalogueAction extends Action {
 
     public function execute(): string{
-        $res = "<HTML> <body>";
+        $res = "<HTML>";
         $bd = ConnectionFactory::makeConnection();
         $rep = $bd->query("select * from serie");
         $res.= "<div class=\"series\">";
         while ($row = $rep->fetch()){
-             $res.="<a href=?action=serie&id=".$row[0].">".$row[1]."</a></br>";
+             $res.="<a class=\"serie\" href=?action=serie&id=".$row[0].">".$row[1]."</a></br>";
         }
-        return $res."</div></body></HTML>";
+        return $res."</div></HTML>";
     }
 }

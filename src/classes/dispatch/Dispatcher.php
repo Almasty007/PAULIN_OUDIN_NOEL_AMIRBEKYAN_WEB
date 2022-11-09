@@ -8,8 +8,7 @@ use iutnc\sae\action\CatalogueAction;
 use iutnc\sae\action\LogoutAction;
 use iutnc\sae\action\SelectionSerieActoin;
 use iutnc\sae\action\SigninAction;
-use iutnc\sae\exception\NotStrengthPassWord;
-use iutnc\sae\media\Serie;
+use iutnc\sae\action\ListePrefAction;
 
 class Dispatcher {
 
@@ -52,7 +51,7 @@ class Dispatcher {
                 $action = new CatalogueAction();
                 break;
             case "listePrefere":
-                $action = new ListePref();
+                $action = new ListePrefAction();
                 break;
             case "serie":
                 $action = new SelectionSerieActoin($_GET['id']);

@@ -96,3 +96,30 @@ input[type=submit]:hover {
     width: 100px;
     height: 50px;
 }
+
+p
+{
+    color: #cccccc;
+    font-family: Verdana;
+    margin: 10px;
+}
+
+table
+{
+    border-collapse: collapse;
+}
+
+td
+{
+    border: 1px solid white;
+}
+
+.td-lien
+{
+    width: 90%;
+}
+
+.description
+{
+    background-color: red;
+}
