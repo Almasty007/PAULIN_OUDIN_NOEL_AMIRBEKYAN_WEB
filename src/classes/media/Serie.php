@@ -56,6 +56,38 @@ class Serie
             $res .= "<tr><td class=\"td-lien\"><a href=?action=regarder&id_ep=".$row[0]."&id=".$id.">".$row[2]."</a></td><td><p>Episode ".$row[1]."</p></td></tr>";
         }
         $res.="</tbody></table></div><a href='?action=catalogue'>Retour</a>";
+        $res.=self::calculerNote($id);
+        $res.=self::getCommentaires($id);
         return $res;
+    }
+    
+    public static function calculerNote(string $id):string {
+        $bd = ConnectionFactory::makeConnection();
+        $res="pas de note";
+        $compteur = 0;
+        $tot = 0;
+        $query = $bd->query("select note from avis where serie_id = '$id'");
+        while ($row = $query->fetch()){
+            $tot += $row[1];
+            $compteur++;
+        }
+        if($compteur != 0){
+            $res = $tot / $compteur.'<br>';
+        }
+        return $res;
+    }
+
+    public static function getCommentaires(string $id):string {
+        $bd = ConnectionFactory::makeConnection();
+        $res="";
+        $query = $bd->query("select commentaire from avis where serie_id = '$id'");
+        while ($row = $query->fetch()){
+            $res.='<p>.$row[0].</p><br>';
+        }
+        if($res == ""){
+            $res = "aucunes notes pour le moment <br>";
+        }
+        return $res;
+
     }
 }
