@@ -6,6 +6,7 @@ use iutnc\sae\action\Action;
 use iutnc\sae\action\AddUserAction;
 use iutnc\sae\action\CatalogueAction;
 use iutnc\sae\action\LogoutAction;
+use iutnc\sae\action\SelectionEpisodeAction;
 use iutnc\sae\action\SelectionSerieAction;
 use iutnc\sae\action\SigninAction;
 use iutnc\sae\action\ListePrefAction;
@@ -52,6 +53,9 @@ class Dispatcher {
                 break;
             case "serie":
                 $action = new SelectionSerieAction($_GET['id']);
+                break;
+            case "regarder":
+                $action = new SelectionEpisodeAction($_GET['id_ep']);
                 break;
             default:
                 echo "mauvaise 'action'";
