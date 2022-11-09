@@ -5,6 +5,7 @@ namespace iutnc\sae\auth;
 use iutnc\sae\db\ConnectionFactory;
 use iutnc\sae\db\User;
 use iutnc\sae\exception\EmailAlreadyRegistedException;
+use iutnc\sae\exception\EmailNonExistsException;
 use iutnc\sae\exception\NotStrengthPassWord;
 use iutnc\sae\exception\TooShortPasswordException;
 use PDO;
@@ -68,19 +69,26 @@ class Auth {
     public static function generateActivationToken(string $email) : string {return "";}
     public static function activate(string $token) : bool {return false;}
 
+    /**
+     * @throws EmailNonExistsException
+     */
     public static function authenticate(string $email, string $passwd2check): bool {
+        $connection = false;
         $bd = ConnectionFactory::makeConnection();
         $query = $bd->prepare("select * from User where login = ? ");
         $query->bindParam(1, $email);
         $query->execute();
         $data = $query->fetch(PDO::FETCH_ASSOC);
-        $hash = $data['mdp'];
-        if (!password_verify($passwd2check, $hash)) {echo "mdp faux"; return false;}
-        $_SESSION['user'] = serialize(new User($email, $passwd2check));
-        $rep = $bd->query("select idUser from User where login = '$email' ");
-        $row = $rep->fetch();
-        $_SESSION['id'] = $row[0];
+        if ($data) {
+            $hash = $data['mdp'];
+            if (!password_verify($passwd2check, $hash)) {return false;}
+            $_SESSION['user'] = serialize(new User($email, $passwd2check));
+            $rep = $bd->query("select idUser from User where login = '$email' ");
+            $row = $rep->fetch();
+            $_SESSION['id'] = $row[0];
+            $connection = true;
+        }
 
-        return true;
+        return $connection;
     }
 }
