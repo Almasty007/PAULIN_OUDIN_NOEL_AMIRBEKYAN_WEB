@@ -7,6 +7,7 @@ use iutnc\sae\action\AddUserAction;
 use iutnc\sae\action\AjouterPrefAction;
 use iutnc\sae\action\CatalogueAction;
 use iutnc\sae\action\LogoutAction;
+use iutnc\sae\action\SelectionEpisodeAction;
 use iutnc\sae\action\SelectionSerieAction;
 use iutnc\sae\action\SigninAction;
 use iutnc\sae\action\ListePrefAction;
@@ -20,7 +21,7 @@ class Dispatcher {
     private function renderPage(string $html) : void {
         $res = <<<HTML
             <!DOCTYPE html>
-            <html>
+            <html lang="">
                 <head>
                     <meta charset="utf-8">
                     <title>NetVOD</title>
@@ -56,6 +57,8 @@ class Dispatcher {
                 break;
             case "ajouterpref":
                 $action = new AjouterPrefAction();
+            case "regarder":
+                $action = new SelectionEpisodeAction($_GET['id'],$_GET['id_ep']);
                 break;
             default:
                 echo "mauvaise 'action'";
@@ -64,7 +67,7 @@ class Dispatcher {
         try {
             $this->renderPage($action->execute());
         }
-        catch (\Error $e) {
+        catch (Error) {
             header("Location:index.php");
         }
     }
