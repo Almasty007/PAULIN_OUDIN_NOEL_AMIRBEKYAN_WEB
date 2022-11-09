@@ -69,9 +69,7 @@ class Auth {
     public static function generateActivationToken(string $email) : string {return "";}
     public static function activate(string $token) : bool {return false;}
 
-    /**
-     * @throws EmailNonExistsException
-     */
+
     public static function authenticate(string $email, string $passwd2check): bool {
         $connection = false;
         $bd = ConnectionFactory::makeConnection();
