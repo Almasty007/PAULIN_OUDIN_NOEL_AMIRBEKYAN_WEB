@@ -30,6 +30,9 @@ else {
             $dispatcher = new Dispatcher();
             $dispatcher->run();
         }
+        else {
+            header("Location:index.php");
+        }
     } else {
         $action = <<<HTML
                     <a id="signin" href="?action=signin">Se connecter</a>
