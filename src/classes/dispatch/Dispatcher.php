@@ -2,13 +2,15 @@
 
 namespace iutnc\sae\dispatch;
 
+use iutnc\sae\action\Action;
 use iutnc\sae\action\AddUserAction;
+use iutnc\sae\action\AjouterPrefAction;
 use iutnc\sae\action\CatalogueAction;
 use iutnc\sae\action\LogoutAction;
 use iutnc\sae\action\SelectionEpisodeAction;
 use iutnc\sae\action\SelectionSerieAction;
 use iutnc\sae\action\SigninAction;
-use iutnc\sae\baseChange\AjouterPref;
+use iutnc\sae\addUrl\AjouterPref;
 
 class Dispatcher {
 
