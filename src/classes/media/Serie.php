@@ -63,7 +63,7 @@ class Serie
     
     public static function calculerNote(string $id):string {
         $bd = ConnectionFactory::makeConnection();
-        $res="pas de note";
+        $res="<p>Pas de note</p>";
         $compteur = 0;
         $tot = 0;
         $query = $bd->query("select note from avis where serie_id = '$id'");
@@ -72,7 +72,7 @@ class Serie
             $compteur++;
         }
         if($compteur != 0){
-            $res = $tot / $compteur.'<br>';
+            $res = '<p>'.$tot / $compteur.'</p><br>';
         }
         return $res;
     }
@@ -85,7 +85,7 @@ class Serie
             $res.='<p>.$row[0].</p><br>';
         }
         if($res == ""){
-            $res = "aucunes notes pour le moment <br>";
+            $res = "<p>Aucunes notes pour le moment</p> <br>";
         }
         return $res;
 
