@@ -10,10 +10,9 @@ use iutnc\sae\action\LogoutAction;
 use iutnc\sae\action\SelectionEpisodeAction;
 use iutnc\sae\action\SelectionSerieAction;
 use iutnc\sae\action\SigninAction;
-use iutnc\sae\action\ListePrefAction;
+use iutnc\sae\addUrl\AjouterPref;
 
 class Dispatcher {
-
 
     public function __construct() {
     }
@@ -56,7 +55,8 @@ class Dispatcher {
                 $action = new SelectionSerieAction($_GET['id']);
                 break;
             case "ajouterpref":
-                $action = new AjouterPrefAction();
+                $action = new AjouterPref();
+                break;
             case "regarder":
                 $action = new SelectionEpisodeAction($_GET['id'],$_GET['id_ep']);
                 break;
@@ -65,9 +65,9 @@ class Dispatcher {
                 break;
         }
         try {
-            $this->renderPage($action->execute());
+                $this->renderPage($action->execute());
         }
-        catch (\Error $e) {
+        catch (\Erro $e) {
             header("Location:index.php");
         }
     }
