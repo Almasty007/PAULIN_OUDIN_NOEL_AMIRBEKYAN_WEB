@@ -26,10 +26,6 @@ class Auth {
             $query->bindParam(1, $email);
             $query->bindParam(2, $hash);
             $query->execute();
-            $query = $bd->prepare("insert into Compte (nomCompte) values(?)");
-            $nomCompte = explode('@', $email)[0];
-            $query->bindParam(1, $nomCompte);
-            $query->execute();
             return true;
         }else{
             return false;

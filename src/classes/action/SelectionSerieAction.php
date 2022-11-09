@@ -4,7 +4,7 @@ namespace iutnc\sae\action;
 
 use iutnc\sae\media\Serie;
 
-class SelectionSerieActoin extends Action{
+class SelectionSerieAction extends Action{
 
     private string $id;
 
