@@ -5,10 +5,9 @@ namespace iutnc\sae\action;
 use iutnc\sae\db\ConnectionFactory;
 use iutnc\sae\db\User;
 
-class AjoutCommentaireAction
+class AjoutCommentaireAction extends Action
 {
-
-    static function execute(string $idserie):void
+    public function __construct(string $idserie)
     {
         $bd = ConnectionFactory::makeConnection();
         $res = $bd->query("select count(note) from avis where serie_id ='".$idserie."' and user_id = '".$_SESSION['id']."';");
@@ -21,6 +20,10 @@ class AjoutCommentaireAction
             $res->bindParam(3,$_POST['note']);
             $res->execute();
         }
-        header('');
+    }
+
+    public function execute():string
+    {
+        return " ";
     }
 }

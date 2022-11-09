@@ -66,7 +66,8 @@ class Dispatcher {
                 $action = new SelectionEpisodeAction($_GET['id'],$_GET['id_ep']);
                 break;
             case "ajout-comm":
-                AjoutCommentaireAction::execute($_GET['idserie']);
+                header("Location:index.php?action=serie&id=".$_GET['idserie']);
+                $action = new AjoutCommentaireAction($_GET['idserie']);
                 break;
             default:
                 echo "mauvaise 'action'";

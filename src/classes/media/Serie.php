@@ -78,7 +78,7 @@ class Serie
         $tot = 0;
         $query = $bd->query("select note from avis where serie_id = '$id'");
         while ($row = $query->fetch()){
-            $tot += $row[1];
+            $tot += $row[0];
             $compteur++;
         }
         if($compteur != 0){
