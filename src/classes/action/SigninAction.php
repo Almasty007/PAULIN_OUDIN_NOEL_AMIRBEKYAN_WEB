@@ -21,14 +21,11 @@ class SigninAction extends Action {
             $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
             $passwd = filter_var($_POST['password']);
             if (Auth::authenticate($email, $passwd)) {
-                $html = "You are connected";
+                $html = "<p>You are connected</p>";
                 header("Location:index.php");
-                if (isset($_SESSION['user'])){
-                    $html.= "<p>CONNECTE</p>";
-                }
             } else {
-                $html = "email or password incorrect";
-            };
+                $html = "<p>email or password incorrect</p>";
+            }
         }
         return $html;
     }
