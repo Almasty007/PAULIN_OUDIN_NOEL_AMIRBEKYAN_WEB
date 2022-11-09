@@ -22,6 +22,8 @@ HTML;
         $action.= "</br><p>".$list->execute()."</p>";
         $listEnCour = new ListeAction("EnCour");
         $action.= "</br><p>".$listEnCour->execute()."</p>";
+        $listEnCour = new ListeAction("listSerieVisionner");
+        $action.= "</br><p>".$listEnCour->execute()."</p>";
         echo ajouterIndex($action);
     }
 }
