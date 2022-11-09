@@ -12,7 +12,7 @@ class AjouterPref
         $bd = ConnectionFactory::makeConnection();
         $id = $_SESSION['id'];
         $id_serie = $_GET["id_serie"];
-        $req0 = $bd->query("select count(*) from listPref where idSerie = $id_serie and idUtilisateur = $id");
+        $req0 = $bd->query("select count(*) from listPref where idserie = $id_serie and iduser = $id");
         $r1 = $req0->fetch();
         $bool = $r1[0];
         if ($bool == 0) {

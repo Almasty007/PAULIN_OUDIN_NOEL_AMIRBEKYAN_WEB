@@ -21,7 +21,7 @@ class Serie
                 throw new PDOException;
             }
             $id_util = $_SESSION['id'];
-            $req0 = $bd->query("select count(*) from listPref where idSerie = $id and idUtilisateur = $id_util");
+            $req0 = $bd->query("select count(*) from listPref where idserie = $id and iduser = $id_util");
             $r1 = $req0->fetch();
             $bool = $r1[0];
             if($bool == 1){
