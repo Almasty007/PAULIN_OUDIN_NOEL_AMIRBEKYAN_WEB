@@ -116,6 +116,12 @@ td
 .td-lien
 {
     width: 90%;
+    font-weight: bold;
+}
+
+.episodes
+{
+    margin: 2%;
 }
 
 .description
