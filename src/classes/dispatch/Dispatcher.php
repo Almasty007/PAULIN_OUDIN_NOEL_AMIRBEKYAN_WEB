@@ -3,6 +3,7 @@
 namespace iutnc\sae\dispatch;
 
 use iutnc\sae\action\AddUserAction;
+use iutnc\sae\action\AjoutCommentaireAction;
 use iutnc\sae\action\CatalogueAction;
 use iutnc\sae\action\LogoutAction;
 use iutnc\sae\action\SelectionEpisodeAction;
@@ -63,6 +64,9 @@ class Dispatcher {
                 break;
             case "regarder":
                 $action = new SelectionEpisodeAction($_GET['id'],$_GET['id_ep']);
+                break;
+            case "ajout-comm":
+                AjoutCommentaireAction::execute($_GET['idserie']);
                 break;
             default:
                 echo "mauvaise 'action'";
