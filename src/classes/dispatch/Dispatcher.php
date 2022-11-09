@@ -2,13 +2,14 @@
 
 namespace iutnc\sae\dispatch;
 
-use Error;
+use iutnc\sae\action\Action;
 use iutnc\sae\action\AddUserAction;
+use iutnc\sae\action\AjouterPrefAction;
 use iutnc\sae\action\CatalogueAction;
 use iutnc\sae\action\LogoutAction;
-use iutnc\sae\action\SelectionEpisodeAction;
 use iutnc\sae\action\SelectionSerieAction;
 use iutnc\sae\action\SigninAction;
+use iutnc\sae\action\ListePrefAction;
 
 class Dispatcher {
 
@@ -19,7 +20,7 @@ class Dispatcher {
     private function renderPage(string $html) : void {
         $res = <<<HTML
             <!DOCTYPE html>
-            <html lang="">
+            <html>
                 <head>
                     <meta charset="utf-8">
                     <title>NetVOD</title>
@@ -53,8 +54,8 @@ class Dispatcher {
             case "serie":
                 $action = new SelectionSerieAction($_GET['id']);
                 break;
-            case "regarder":
-                $action = new SelectionEpisodeAction($_GET['id_ep']);
+            case "ajouterpref":
+                $action = new AjouterPrefAction();
                 break;
             default:
                 echo "mauvaise 'action'";
@@ -63,7 +64,7 @@ class Dispatcher {
         try {
             $this->renderPage($action->execute());
         }
-        catch (Error) {
+        catch (\Error $e) {
             header("Location:index.php");
         }
     }
