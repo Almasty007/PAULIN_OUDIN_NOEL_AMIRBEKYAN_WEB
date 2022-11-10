@@ -23,7 +23,6 @@ class AjouterEnCour
             $req->bindParam(2, $idUser);
             $req->execute();
         }
-        $id_ep = $_GET["id_ep"];
         $id_first_ep = $bd->query("select min(id) from episode where serie_id = $id_serie")->fetch()[0];
         echo $id_first_ep ." ". $id_ep;
         for ($i = $id_first_ep; $i <=$id_ep; $i++){
