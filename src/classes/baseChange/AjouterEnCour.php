@@ -3,6 +3,7 @@
 namespace iutnc\sae\baseChange;
 
 use iutnc\sae\db\ConnectionFactory;
+use PDOException;
 
 class AjouterEnCour
 {
@@ -23,14 +24,14 @@ class AjouterEnCour
             $req->execute();
         }
         $id_ep = $_GET["id_ep"];
-        $req01 = $bd->query("select count(*) from listEpisodeVisionner where idep = $id_ep and iduser = $idUser");
-        $r01 = $req01->fetch();
-        if($r01[0] == 0){
-            $req = $bd->prepare("insert into listEpisodeVisionner values(?,?,?)");
-            $req->bindParam(1, $idUser);
-            $req->bindParam(2, $id_ep);
-            $req->bindParam(3, $id_serie);
-            $req->execute();
+        $id_first_ep = $bd->query("select min(id) from episode where serie_id = $id_serie")->fetch()[0];
+        echo $id_first_ep ." ". $id_ep;
+        for ($i = $id_first_ep; $i <=$id_ep; $i++){
+            try {
+                $bd->query("insert into listEpisodeVisionner values($idUser,$i,$id_serie)");
+            }catch(PDOException){
+
+            }
         }
         $req = $bd->query("select count(*) from listSerieVisionner where idserie = $id_serie");
         $res = $req->fetch();
