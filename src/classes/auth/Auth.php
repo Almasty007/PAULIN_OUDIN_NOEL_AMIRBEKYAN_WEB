@@ -27,7 +27,7 @@ class Auth {
             $query->bindParam(1, $email);
             $query->bindParam(2, $hash);
             $query->execute();
-            $query2 = $bd->query("select idUser from User where email = ".$email.";");
+            $query2 = $bd->query("select idUser from User where email = ".$email);
             $query3 = $bd->prepare("insert into profil (user_id) values(?)");
             $query3->bindParam(1,$query2->fetch()[0]);
         }
@@ -45,21 +45,6 @@ class Auth {
         return true;
     }
 
-    public static function checkOwner(int $oId, int $plId):bool {
-        $base = ConnectionFactory::makeConnection();
-        $result = $base->prepare("SELECT id_pl FROM user2playlist WHERE id_user = ?");
-        $result->bindParam(1, $oId);
-        $result->execute();
-        $auth = false;
-        while($data = $result->fetch()) {
-            if($plId == $data['id_pl']) {
-               $auth = true;
-               break;
-            }
-        }
-        $result->closeCursor();
-        return $auth;
-    }
 
     public static function authenticate(string $email, string $passwd2check): bool {
         $connection = false;
@@ -87,10 +72,10 @@ class Auth {
         $query->execute();
         $data = $query->fetch(PDO::FETCH_ASSOC);
         if ($data) {
-            if ($data['active'] == 1) {
-                return true;
-            }
+            return ($data['active'] == 1);
         }
-        return false;
+        else {
+            throw new EmailNonExistsException("Email non existant");
+        }
     }
 }
