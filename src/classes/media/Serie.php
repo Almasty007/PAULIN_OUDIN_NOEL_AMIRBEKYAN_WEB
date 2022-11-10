@@ -56,9 +56,13 @@ class Serie
             $res .= "<tr><td class=\"td-lien\"><a href=?action=regarder&id_ep=".$row[0]."&id=".$id.">".$row[2]."</a></td><td><p>Episode ".$row[1]."</p></td></tr>";
         }
         $res.="</tbody></table></div>
-        <a href='?action=catalogue'>Retour</a>";
+        <a href='?action=catalogue'>Retour</a><br><br><br><br>";
+        $res.="<div class = 'note'><p>Note moyenne :</p>";
         $res.=self::calculerNote($id);
+        $res.='</div>';
+        $res.="<div class = 'commentaire'><p>Commentaires : </p>";
         $res.=self::getCommentaires($id);
+        $res.='</div>';
         return $res;
     }
     
@@ -73,7 +77,7 @@ class Serie
             $compteur++;
         }
         if($compteur != 0){
-            $res = '<p>'.$tot / $compteur.'</p><br>';
+            $res = '<p>'.round($tot / $compteur, 2).'</p><br>';
         }
         return $res;
     }
