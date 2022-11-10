@@ -10,6 +10,7 @@ class Serie
 
     public static function afficher(string $id): string
     {
+        $idUser = $_SESSION['id'];
         $res = "";
         $bd = ConnectionFactory::makeConnection();
 
@@ -33,37 +34,43 @@ class Serie
         } catch (\PDOException $e){
             //exception : si on interagie avec une serie non conforme attrape
         }
-
-
-        $query = $bd->prepare("select * from serie where id = ?");
-        $query->bindParam(1, $id);
-        $query->execute();
-        while ($row = $query->fetch()){
-            $res .= "<div class=\"description\"><p>Titre : ".$row[1]."</p><p>Description : ".$row[2]."</p><p>Annee : ".$row[4]." </p><p>Date d'ajout : ".$row[5]."</p></div>";
+        $reqpres = $bd->query("select count(*) from EnCour where idserie = $id and iduser = $idUser");
+        $present = $reqpres->fetch()[0];
+        echo $present;
+        if ($present == 1){
+            return Serie::getEpisodeARegarder($id);
         }
-        $query = $bd->prepare("select count(*) from episode where serie_id = ?");
-        $query->bindParam(1, $id);
-        $query->execute();
-        $row = $query->fetch();
-        $res.= "<p>Nombre d'episode : ".$row[0]."</p>";
-        $query = $bd->prepare("select * from episode where serie_id = ?");
-        $query->bindParam(1, $id);
-        $query->execute();
-        $res.="<br>";
-        $res.="<div class=\"episodes\">";
-        $res.="<table><tbody>";
-        while ($row = $query->fetch()){
-            $res .= "<tr><td class=\"td-lien\"><a href=?action=regarder&id_ep=".$row[0]."&id=".$id.">".$row[2]."</a></td><td><p>Episode ".$row[1]."</p></td></tr>";
-        }
-        $res.="</tbody></table></div>
+        else {
+            $query = $bd->prepare("select * from serie where id = ?");
+            $query->bindParam(1, $id);
+            $query->execute();
+            while ($row = $query->fetch()) {
+                $res .= "<div class=\"description\"><p>Titre : " . $row[1] . "</p><p>Description : " . $row[2] . "</p><p>Annee : " . $row[4] . " </p><p>Date d'ajout : " . $row[5] . "</p></div>";
+            }
+            $query = $bd->prepare("select count(*) from episode where serie_id = ?");
+            $query->bindParam(1, $id);
+            $query->execute();
+            $row = $query->fetch();
+            $res .= "<p>Nombre d'episode : " . $row[0] . "</p>";
+            $query = $bd->prepare("select * from episode where serie_id = ?");
+            $query->bindParam(1, $id);
+            $query->execute();
+            $res .= "<br>";
+            $res .= "<div class=\"episodes\">";
+            $res .= "<table><tbody>";
+            while ($row = $query->fetch()) {
+                $res .= "<tr><td class=\"td-lien\"><a href=?action=regarder&id_ep=" . $row[0] . "&id=" . $id . ">" . $row[2] . "</a></td><td><p>Episode " . $row[1] . "</p></td></tr>";
+            }
+            $res .= "</tbody></table></div>
         <a href='?action=catalogue'>Retour</a><br><br><br><br>";
-        $res.="<div class = 'note'><p>Note moyenne :</p>";
-        $res.=self::calculerNote($id);
-        $res.='</div>';
-        $res.="<div class = 'commentaire'><p>Commentaires : </p>";
-        $res.=self::getCommentaires($id);
-        $res.='</div>';
-        return $res;
+            $res .= "<div class = 'note'><p>Note moyenne :</p>";
+            $res .= self::calculerNote($id);
+            $res .= '</div>';
+            $res .= "<div class = 'commentaire'><p>Commentaires : </p>";
+            $res .= self::getCommentaires($id);
+            $res .= '</div>';
+            return $res;
+        }
     }
     
     public static function calculerNote(string $id):string {
@@ -95,4 +102,14 @@ class Serie
         return $res;
 
     }
+
+    public static function getEpisodeARegarder(string $idserie) {
+        $bd = ConnectionFactory::makeConnection();
+        $iduser = $_SESSION['id'];
+        $reqepisode = $bd->query("select max(idep) from listEpisodeVisionner where iduser = $iduser and idserie = $idserie");
+        $episode = $reqepisode->fetch()[0];
+        $episode++;
+        header("Location:index.php?action=regarder&id_ep=$episode&id=$idserie");
+    }
+
 }

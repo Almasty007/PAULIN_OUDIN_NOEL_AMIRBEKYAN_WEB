@@ -76,11 +76,11 @@ class Dispatcher {
                 echo "mauvaise 'action'";
                 break;
         }
-        //try {
+        try {
                 $this->renderPage($action->execute());
-//        }
-//        catch (\Error $e) {
-//            header("Location:index.php");
-//        }
+        }
+        catch (\Erro $e) {
+            header("Location:index.php");
+        }
     }
 }
