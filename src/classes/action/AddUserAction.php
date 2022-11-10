@@ -49,7 +49,6 @@ class AddUserAction extends Action {
                     $html = "<p>Mot de passe pas assez protégé</p>";
                 }
             }
-            $html .= "<br><a href='?action=add-user'>Retour</a>";
         }
         return $html;
     }

@@ -89,6 +89,11 @@ input[type=submit]:hover {
     flex-wrap: wrap;
 }
 
+.comment-form{
+    color: white;
+    font-family: Helvetica;
+}
+
 .serie
 {
     width: 100px;
@@ -124,7 +129,7 @@ td
     margin: 2%;
 }
 
-.description
+.description, .note, .commentaire
 {
     background-color: #ff8903;
     margin: 2% 5% 2% 2%;
@@ -132,7 +137,7 @@ td
     padding: 1%;
 }
 
-.description>p
+.description>p, .note>p, .commentaire>p
 {
     color: black;
     font-weight: bold;
@@ -152,3 +157,4 @@ td
 {
     width: 200px;
 }
+
