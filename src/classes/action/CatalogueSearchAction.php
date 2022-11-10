@@ -9,8 +9,7 @@ class CatalogueSearchAction extends CatalogueAction
     public function executeWithArg(string $ch): string
     {
         if($ch == ""){
-             $t = new CatalogueAction();
-             return $t->execute();
+             return self::execute();
         }else {
             $res = "<HTML>";
             $bd = ConnectionFactory::makeConnection();
