@@ -40,7 +40,10 @@ class ListeAction extends Action{
         else{
             $rep = $bd->query("select serie.id, titre from $this->table inner join serie on serie.id = $this->table.idserie where iduser = $id");
             while ($row = $rep->fetch()){
-                $res.="<a href=?action=serie&id=".$row[0].">".$row[1]."</a></br>";
+                if ($this->table == "EnCour"){$res.="<a href=?action=continuerSerie&id=".$row[0].">".$row[1]."</a></br>";}
+                else {
+                    $res .= "<a href=?action=serie&id=" . $row[0] . ">" . $row[1] . "</a></br>";
+                }
             }
         }
         return $res;
