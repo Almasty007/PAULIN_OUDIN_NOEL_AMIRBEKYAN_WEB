@@ -44,7 +44,6 @@ class AddUserAction extends Action {
                     $html .= "<br><a href='?action=add-user'>Retour</a>";
                 }
             }
-            $html .= "<br><a href='?action=add-user'>Retour</a>";
         }
         return $html;
     }
