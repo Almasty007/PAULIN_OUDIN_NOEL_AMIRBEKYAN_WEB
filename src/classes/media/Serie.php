@@ -8,7 +8,7 @@ use iutnc\sae\media\Episode;
 class Serie
 {
 
-    public static function afficher(string $id): string
+    public static function afficher(string $id, bool $catalogue): string
     {
         $idUser = $_SESSION['id'];
         $res = "";
@@ -37,7 +37,7 @@ class Serie
         $reqpres = $bd->query("select count(*) from EnCour where idserie = $id and iduser = $idUser");
         $present = $reqpres->fetch()[0];
         echo $present;
-        if ($present == 1){
+        if ($present == 1 and !$catalogue){
             return Serie::getEpisodeARegarder($id);
         }
         else {

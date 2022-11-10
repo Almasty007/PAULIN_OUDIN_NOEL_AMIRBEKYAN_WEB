@@ -53,6 +53,9 @@ class Dispatcher {
                 $action = new CatalogueAction();
                 break;
             case "serie":
+                $action = new SelectionSerieAction($_GET['id'], true);
+                break;
+            case "continuerSerie":
                 $action = new SelectionSerieAction($_GET['id']);
                 break;
             case "ajouterpref":
