@@ -5,6 +5,8 @@ namespace iutnc\sae\dispatch;
 use iutnc\sae\action\AddUserAction;
 use iutnc\sae\action\AjoutCommentaireAction;
 use iutnc\sae\action\CatalogueAction;
+use iutnc\sae\action\CatalogueExecuteSearch;
+use iutnc\sae\action\CatalogueSearchAction;
 use iutnc\sae\action\LogoutAction;
 use iutnc\sae\action\ModifProfilAction;
 use iutnc\sae\action\SelectionEpisodeAction;
@@ -52,7 +54,13 @@ class Dispatcher {
                 $action = new LogoutAction();
                 break;
             case "catalogue":
-                $action = new CatalogueAction();
+                $classeTemp = new CatalogueSearchAction();
+                if(!isset($_POST['chaine'])){
+                    $_POST['chaine'] =  "";
+                }
+                $action = new CatalogueExecuteSearch($classeTemp, filter_var($_POST['chaine'], FILTER_SANITIZE_STRING));
+                $_POST['chaine'] =  "";
+                //$action = new CatalogueAction();
                 break;
             case "serie":
                 $action = new SelectionSerieAction($_GET['id'], true);
@@ -90,7 +98,7 @@ class Dispatcher {
         try {
                 $this->renderPage($action->execute());
         }
-        catch (\Error $e) {
+        catch (\Erro $e) {
             header("Location:index.php");
         }
     }
