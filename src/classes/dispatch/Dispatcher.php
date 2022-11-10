@@ -11,6 +11,7 @@ use iutnc\sae\action\SelectionSerieAction;
 use iutnc\sae\action\SigninAction;
 use iutnc\sae\baseChange\AjouterPref;
 use iutnc\sae\baseChange\SupprimerPref;
+use iutnc\sae\action\ActivationAction;
 
 class Dispatcher {
 
@@ -68,15 +69,18 @@ class Dispatcher {
             case "ajout-comm":
                 $action = new AjoutCommentaireAction($_GET['id'],$_GET['id_ep']);
                 break;
+            case "activation":
+                $action = new ActivationAction($_GET['token']);
+                break;
             default:
                 echo "mauvaise 'action'";
                 break;
         }
-        try {
+        //try {
                 $this->renderPage($action->execute());
-        }
-        catch (\Error $e) {
-            header("Location:index.php");
-        }
+//        }
+//        catch (\Error $e) {
+//            header("Location:index.php");
+//        }
     }
 }

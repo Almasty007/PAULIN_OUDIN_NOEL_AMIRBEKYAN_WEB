@@ -30,7 +30,7 @@ HTML;
 //Sinon (s'il n'est pas connecté), on affiche la page qui propose de se connecter ou de créer un compte
 else {
     if (isset($_GET['action'])) {
-        if ($_GET['action'] === "signin" or $_GET['action'] === "add-user") {
+        if ($_GET['action'] === "signin" or $_GET['action'] === "add-user" or $_GET['action'] === "activation") {
             $dispatcher = new Dispatcher();
             $dispatcher->run();
         }

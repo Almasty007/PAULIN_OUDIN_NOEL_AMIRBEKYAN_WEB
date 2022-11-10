@@ -27,10 +27,8 @@ class Auth {
             $query->bindParam(1, $email);
             $query->bindParam(2, $hash);
             $query->execute();
-            return true;
-        }else{
-            return false;
         }
+        return true;
     }
 
     public static function checkPassStrength(string $passwd, int $minLength):bool {
@@ -43,13 +41,6 @@ class Auth {
         if (! ($digit && $special && $lower && $upper)) throw new NotStrengthPassWord("le mot de passe n'est pas asses protoge");
         return true;
     }
-
-    public static function loadProfile(string $email): void {
-
-    }
-
-    public static function checkAccesLevel(int $required):void {}
-
 
     public static function checkOwner(int $oId, int $plId):bool {
         $base = ConnectionFactory::makeConnection();
@@ -66,9 +57,6 @@ class Auth {
         $result->closeCursor();
         return $auth;
     }
-    public static function generateActivationToken(string $email) : string {return "";}
-    public static function activate(string $token) : bool {return false;}
-
 
     public static function authenticate(string $email, string $passwd2check): bool {
         $connection = false;
@@ -86,7 +74,20 @@ class Auth {
             $_SESSION['id'] = $row[0];
             $connection = true;
         }
-
         return $connection;
+    }
+
+    public static function isActivate(string $email): bool {
+        $bd = ConnectionFactory::makeConnection();
+        $query = $bd->prepare("select * from User where login = ? ");
+        $query->bindParam(1, $email);
+        $query->execute();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
+        if ($data) {
+            if ($data['active'] == 1) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -20,11 +20,20 @@ class SigninAction extends Action {
         elseif ($_SERVER['REQUEST_METHOD'] === "POST") {
             $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
             $passwd = filter_var($_POST['password']);
-            if (Auth::authenticate($email, $passwd)) {
-                $html = "<p>You are connected</p>";
-                header("Location:index.php");
-            } else {
-                $html = "<p>email or password incorrect</p>";
+            if (Auth::isActivate($email)) {
+                if (Auth::authenticate($email, $passwd)) {
+                    $html = "<p>You are connected</p>";
+                    header("Location:index.php");
+                } else {
+                    $html = "<p>Email or password incorrect</p>";
+                }
+            }
+            else {
+                $html = "<p>Veuillez activer votre compte</p>";
+                $token =  bin2hex(random_bytes(32));
+                AddUserAction::addToken($email, $token);
+                $activate_url = "?action=activation&token=$token";
+                $html.= "<p>Cliquez sur le lien pour activer votre compte : <a href=$activate_url>cliquez-ici</a></p>";
             }
         }
         return $html;
