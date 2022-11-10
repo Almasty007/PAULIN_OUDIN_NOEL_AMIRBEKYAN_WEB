@@ -89,6 +89,11 @@ input[type=submit]:hover {
     flex-wrap: wrap;
 }
 
+.comment-form{
+    color: white;
+    font-family: Helvetica;
+}
+
 .serie
 {
     width: 100px;

@@ -20,7 +20,7 @@ class Episode
 
         $res.='<div class="video"><video controls width="1000"><source src="video/'.$row[5].'"> type="video/webm"</video></div>';
         $res.="
-        <form method='post' action='?action=ajout-comm&id=".$id_serie."&id_ep=".$id_episode."'>
+        <form method='post' action='?action=ajout-comm&id=".$id_serie."&id_ep=".$id_episode."' class='comment-form'>
         <h2>Note</h2>
         <select name='note'>
         <option value='1'>1</option>
