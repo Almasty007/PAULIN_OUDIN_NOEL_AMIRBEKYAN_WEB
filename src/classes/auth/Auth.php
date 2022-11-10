@@ -27,6 +27,9 @@ class Auth {
             $query->bindParam(1, $email);
             $query->bindParam(2, $hash);
             $query->execute();
+            $query2 = $bd->query("select idUser from User where email = ".$email.";");
+            $query3 = $bd->prepare("insert into profil (user_id) values(?)");
+            $query3->bindParam(1,$query2->fetch()[0]);
         }
         return true;
     }
