@@ -15,15 +15,22 @@ if (isset($_SESSION['user'])) {
         $dispatcher->run();
     } else {
         $action = <<<HTML
+            <div class="header">
+                <a id="title" href="">NetVOD</a>
+                <div class="main">
                     <a href="?action=logout">Se déconnecter</a>
                     <a href="?action=catalogue">Catalogue</a>
+                </div>
+            </div>
 HTML;
+        $action.="<div class='liste-serie'>";
         $list = new ListeAction("listPref");
-        $action.= "</br><p>".$list->execute()."</p>";
+        $action.= "<p>".$list->execute()."</p>";
         $listEnCour = new ListeAction("EnCour");
         $action.= "</br><p>".$listEnCour->execute()."</p>";
         $listEnCour = new ListeAction("listSerieVisionner");
         $action.= "</br><p>".$listEnCour->execute()."</p>";
+        $action.="</div>";
         echo ajouterIndex($action);
     }
 }
@@ -39,8 +46,13 @@ else {
         }
     } else {
         $action = <<<HTML
+            <div class="header">
+                <a id="title" href="">NetVOD</a>
+                <div class="main">
                     <a id="signin" href="?action=signin">Se connecter</a>
                     <a id="signup" href="?action=add-user">S'inscrire</a>
+                </div>
+            </div>
 HTML;
         echo ajouterIndex($action);
     }
@@ -56,12 +68,7 @@ function ajouterIndex(string $html) : string {
             <link rel="stylesheet" type="text/css" href="style.css">
         </head>
         <body>
-            <div class="header">
-                <a id="title" href="">NetVOD</a>
-                <div class="main">
-                    $html
-                </div>
-            </div>
+            $html
         </body>
     </html>
     HTML;

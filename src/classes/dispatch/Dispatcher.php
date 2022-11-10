@@ -21,7 +21,7 @@ class Dispatcher {
     private function renderPage(string $html) : void {
         $res = <<<HTML
             <!DOCTYPE html>
-            <html lang="">
+            <html lang="fr">
                 <head>
                     <meta charset="utf-8">
                     <title>NetVOD</title>
@@ -79,7 +79,7 @@ class Dispatcher {
         try {
                 $this->renderPage($action->execute());
         }
-        catch (\Erro $e) {
+        catch (\Error $e) {
             header("Location:index.php");
         }
     }

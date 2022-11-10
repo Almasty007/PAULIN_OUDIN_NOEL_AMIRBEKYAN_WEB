@@ -15,6 +15,10 @@ class ListeAction extends Action{
     public function execute(): string{
         $res = "";
         $bd = ConnectionFactory::makeConnection();
+        if (!isset($_SESSION['id'])){
+            unset($_SESSION['user']);
+            header("Location:index.php");
+        }
         $id = $_SESSION['id'];
         switch ($this->table){
             case "listPref":
