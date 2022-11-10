@@ -35,7 +35,7 @@ class AjoutCommentaireAction extends Action
         }
         $ch = Episode::afficher($this->ids,$this->ide);
         if ($commentaire) {
-            $ch = "<p>Vous avez deja note et commente cette serie</p>
+            $ch = "<p>Vous avez déjà noté et commenté cette serie</p>
                     <a href=?action=regarder&id=" . $this->ids . "&id_ep=".$this->ide.">Retour</a>";
         }
         return $ch;
