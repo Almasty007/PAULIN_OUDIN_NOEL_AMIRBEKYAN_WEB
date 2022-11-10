@@ -4,6 +4,7 @@ namespace iutnc\sae\media;
 use iutnc\sae\action\Action;
 use iutnc\sae\db\ConnectionFactory;
 use iutnc\sae\media\Episode;
+use PDOException;
 
 class Serie
 {
@@ -36,9 +37,9 @@ class Serie
         }
         $reqpres = $bd->query("select count(*) from EnCour where idserie = $id and iduser = $idUser");
         $present = $reqpres->fetch()[0];
-        echo $present;
         if ($present == 1 and !$catalogue){
-            return Serie::getEpisodeARegarder($id);
+            Serie::getEpisodeARegarder($id);
+            return "";
         }
         else {
             $query = $bd->prepare("select * from serie where id = ?");
