@@ -6,12 +6,14 @@ use iutnc\sae\action\AddUserAction;
 use iutnc\sae\action\AjoutCommentaireAction;
 use iutnc\sae\action\CatalogueAction;
 use iutnc\sae\action\LogoutAction;
+use iutnc\sae\action\ModifProfilAction;
 use iutnc\sae\action\SelectionEpisodeAction;
 use iutnc\sae\action\SelectionSerieAction;
 use iutnc\sae\action\SigninAction;
 use iutnc\sae\baseChange\AjouterPref;
 use iutnc\sae\baseChange\SupprimerPref;
 use iutnc\sae\action\ActivationAction;
+use iutnc\sae\db\ProfilUpdate;
 
 class Dispatcher {
 
@@ -74,6 +76,12 @@ class Dispatcher {
                 break;
             case "activation":
                 $action = new ActivationAction($_GET['token']);
+                break;
+            case "profil":
+                $action = new ModifProfilAction();
+                break;
+            case "profilmodif":
+                ProfilUpdate::update($_SESSION['id']);
                 break;
             default:
                 echo "mauvaise 'action'";
