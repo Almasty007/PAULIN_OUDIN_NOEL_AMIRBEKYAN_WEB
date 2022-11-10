@@ -13,7 +13,7 @@ class AddUserAction extends Action {
         $html = "";
         if($_SERVER['REQUEST_METHOD'] === 'GET') {
             $html = <<<HTML
-            <form action="?action=${_GET['action']}" method="post">
+            <form action="?action=${_GET['action']}" method="post" class="log-form">
                 <label>Email: </label><input type="text" name="email" placeholder="toto@gmail.com" required>
                 <label>Password: </label><input type="password" name="password" required>
                 <label>Password: (verification) </label><input type="password" name="password2" required>
@@ -26,26 +26,25 @@ class AddUserAction extends Action {
             $passwd = filter_var($_POST['password']);
             $passwd2 = filter_var($_POST['password2']);
             if($passwd != $passwd2){
-                $html = "les 2 mdp ne sont pas identiques";
+                $html = "<p>Les 2 mdp ne sont pas identiques</p>";
             }
             else
             {
                 try {
-                    if (Auth::register($email, $passwd)) $html = "succesfully registered";
-                    else $html = "email already exist";
+                    if (Auth::register($email, $passwd)) $html = "<p>Succesfully registered</p>";
+                    else $html = "<p>Email already exist</p>";
                     $html .= "<br><a href='?action=signin'>Connection</a>";
                 } catch (EmailAlreadyRegistedException $e) {
-                    $html = "email has already registed";
-                    $html .= "<br><a href='?action=add-user'>Retour</a>";
+                    $html = "<p>Email has already registed</p>";
                 } catch (TooShortPasswordException $e) {
-                    $html = "password too short";
+                    $html = "<p>Password too short</p>";
                     $html .= "<br><a href='?action=add-user'>Retour</a>";
                 } catch (NotStrengthPassWord $e) {
-                    $html = "mot de passe n'est pas assez protege";
+                    $html = "<p>Mot de passe n'est pas assez protege</p>";
                     $html .= "<br><a href='?action=add-user'>Retour</a>";
                 }
             }
-
+            $html .= "<br><a href='?action=add-user'>Retour</a>";
         }
         return $html;
     }
