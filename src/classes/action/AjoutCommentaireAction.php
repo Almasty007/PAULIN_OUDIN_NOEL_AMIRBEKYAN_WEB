@@ -30,12 +30,13 @@ class AjoutCommentaireAction extends Action
             $res->bindParam(1, $_SESSION['id']);
             $res->bindParam(2, $this->ids);
             $res->bindParam(3, $_POST['note']);
-            $res->bindParam(4, $_POST['commentaire']);
+            $commentaire_filtre = filter_var($_POST['commentaire'], FILTER_SANITIZE_STRING);
+            $res->bindParam(4, $commentaire_filtre);
             $res->execute();
         }
         $ch = Episode::afficher($this->ids,$this->ide);
         if ($commentaire) {
-            $ch = "<p>Vous avez deja note et commente cette serie</p>
+            $ch = "<p>Vous avez déjà noté et commenté cette serie</p>
                     <a href=?action=regarder&id=" . $this->ids . "&id_ep=".$this->ide.">Retour</a>";
         }
         return $ch;
