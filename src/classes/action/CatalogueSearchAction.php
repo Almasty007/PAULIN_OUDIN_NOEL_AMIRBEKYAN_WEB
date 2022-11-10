@@ -14,7 +14,7 @@ class CatalogueSearchAction extends CatalogueAction
             $res = "<HTML>";
             $bd = ConnectionFactory::makeConnection();
             $rep = $bd->query("select * from serie where lower(descriptif) like lower('%$ch%') or lower(titre) like lower('%$ch%')");
-            $res.= '<form action="?" method="get" class="log-form">
+            $res.= '<form action="?" method="get" class="search-form">
                     <button type="submit" >Retour</button>
                     <input type="hidden" name="action" value="catalogue">
                     </form>';

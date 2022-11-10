@@ -3,6 +3,7 @@
 namespace iutnc\sae\action;
 
 use iutnc\sae\auth\Auth;
+use iutnc\sae\exception\EmailNonExistsException;
 
 class SigninAction extends Action {
 
@@ -22,20 +23,23 @@ class SigninAction extends Action {
         elseif ($_SERVER['REQUEST_METHOD'] === "POST") {
             $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
             $passwd = filter_var($_POST['password']);
-            if (Auth::isActivate($email)) {
-                if (Auth::authenticate($email, $passwd)) {
-                    $html = "<p>You are connected</p>";
-                    header("Location:index.php");
+            try {
+                if (Auth::isActivate($email)) {
+                    if (Auth::authenticate($email, $passwd)) {
+                        $html = "<p>You are connected</p>";
+                        header("Location:index.php");
+                    } else {
+                        $html = "<p>Email or password incorrect</p>";
+                    }
                 } else {
-                    $html = "<p>Email or password incorrect</p>";
+                    $html = "<p>Veuillez activer votre compte</p>";
+                    $token = bin2hex(random_bytes(32));
+                    AddUserAction::addToken($email, $token);
+                    $activate_url = "?action=activation&token=$token";
+                    $html .= "<p>Cliquez sur le lien pour activer votre compte : <a href=$activate_url>cliquez-ici</a></p>";
                 }
-            }
-            else {
-                $html = "<p>Veuillez activer votre compte</p>";
-                $token =  bin2hex(random_bytes(32));
-                AddUserAction::addToken($email, $token);
-                $activate_url = "?action=activation&token=$token";
-                $html.= "<p>Cliquez sur le lien pour activer votre compte : <a href=$activate_url>cliquez-ici</a></p>";
+            } catch (EmailNonExistsException $e) {
+                $html.= "<p>Email or password incorrect</p>";
             }
         }
         return $html;

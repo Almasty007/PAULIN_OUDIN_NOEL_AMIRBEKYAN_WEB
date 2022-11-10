@@ -1,11 +1,14 @@
 <?php
 
-namespace iutnc\sae\db;
+namespace iutnc\sae\baseChange;
+
+use iutnc\sae\db\ConnectionFactory;
 
 class ProfilUpdate
 {
 
- static function update(string $iduser):void{
+ static function update():void{
+     $iduser = $_SESSION['id'];
     $bd = ConnectionFactory::makeConnection();
     $nomfiltre = filter_var($_POST['nom'],FILTER_SANITIZE_STRING);
     $prenomfiltre = filter_var($_POST['prenom'],FILTER_SANITIZE_STRING);
