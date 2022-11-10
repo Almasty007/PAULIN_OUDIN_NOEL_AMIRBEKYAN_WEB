@@ -20,6 +20,7 @@ if (isset($_SESSION['user'])) {
                 <div class="main">
                     <a href="?action=logout">Se déconnecter</a>
                     <a href="?action=catalogue">Catalogue</a>
+                    <a href="?action=profil">Profil</a>
                 </div>
             </div>
 HTML;
