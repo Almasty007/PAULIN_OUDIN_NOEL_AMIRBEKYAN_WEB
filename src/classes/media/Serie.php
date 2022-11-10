@@ -64,7 +64,8 @@ class Serie
         <option value='3'>3</option>
         <option value='4'>4</option>
         <option value='5'>5</option></select>
-        <button type='submit'>Valider Note</button></form></div>
+        <textarea maxlength='520' name='commentaire' placeholder='Commentaire' required></textarea>
+        <button type='submit'>Envoyer</button></form></div>
         <a href='?action=catalogue'>Retour</a>";
         $res.=self::calculerNote($id);
         $res.=self::getCommentaires($id);
@@ -92,10 +93,10 @@ class Serie
         $res="";
         $query = $bd->query("select commentaire from avis where serie_id = '$id'");
         while ($row = $query->fetch()){
-            $res.='<p>.$row[0].</p><br>';
+            $res.="<p>".$row[0]."</p><br>";
         }
         if($res == ""){
-            $res = "<p>Aucunes notes pour le moment</p> <br>";
+            $res = "<p>Aucun commentaire pour le moment</p> <br>";
         }
         return $res;
 
