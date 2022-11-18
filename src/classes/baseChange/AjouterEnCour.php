@@ -32,9 +32,7 @@ class AjouterEnCour
 
             }
         }
-        $req = $bd->query("select count(*) from listSerieVisionner where idserie = $id_serie");
-        $res = $req->fetch();
-        if ($res[0] == 0) {
+        if ($r02[0] == 0) {
             $nombreEpVisioner = $bd->query("select count(*) from listEpisodeVisionner where idserie = $id_serie and iduser = $idUser");
             $rnbEpVisionner = $nombreEpVisioner->fetch();
             $nbEp = $bd->query("select count(*) from episode where serie_id = $id_serie");
