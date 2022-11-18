@@ -8,7 +8,7 @@ When you arrive at the home page, you can Sign in or Signup.*
 ###### **Sign in**:
 <sub>Click the button "**Se connecter**" then enter your email and your password.</sub>
 
-When you are connected you can see your favorite series, your watching-list and the series already viewed. You have three buttons: to logout, to see the series list and to change your profile.
+*When you are connected you can see your favorite series, your watching-list and the series already viewed. You have three buttons: to logout, to see the series list and to change your profile.*
 
 ###### **Favorite series**:
 <sub>**Press the link** in the series to add it to your menu in home.</sub>
